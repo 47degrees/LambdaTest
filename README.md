@@ -1,2 +1,4 @@
 # LambdaTest
-Functional testing for Scala..
+Functional testing for Scala.
+
+Coming soon.
