@@ -10,13 +10,14 @@ LambdaTest has the following features.
 
 * Written entirely in Scala.
 * Fully functional using immutable testing state.
-* Simple with relatively little code (less the 1K lines of Scala).
+* Simple with relatively little code (about 1K lines of Scala).
 * Easy to customize and extend.
 * Can include ScalaCheck properties as tests.
 * Tests can be run either via SBT or directly.
 
 ## Concepts
 
+* **Reporter**. Used to report test results.
 * **State**. All state needed to run tests is stored in objects of type `LambdaState`. State objects are immutable. 
 * **Action**. Actions transform an old state to a new state and are objects of type `LambdaAct`. Each `LambdaAct` object contains an ordered sequence of transforms. Each transform maps an old state to a new state. A `LambdaAct` with exactly one transform is called a single action, with no transforms is call an empty action and with two or more transforms is called a multiple action. Actions can be combined using the infix `+` operator.
 
