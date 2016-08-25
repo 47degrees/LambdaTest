@@ -1,4 +1,4 @@
-# LamdaTest
+# LambdaTest
 
 *This repo will be changed from private to public once documentation and reviews are done.
 Comments, suggestions and pull requests are welcome.
@@ -22,7 +22,7 @@ LambdaTest has the following features.
 
 Actions are created using functions that create objects of type `LambdaAct`. These functions are also informally refered to as actions.
 
-Multiple actions can also be specified as a sequence of actions. This is done via an implicit conversion from `Seq[LamdaAct]` to `LambdaAct`. See the Generate demo for an example that used this conversion.
+Multiple actions can also be specified as a sequence of actions. This is done via an implicit conversion from `Seq[LambdaAct]` to `LambdaAct`. See the Generate demo for an example that used this conversion.
 
 ## Documentation
 
@@ -118,10 +118,10 @@ If parallel is true, actions directly inside are run in parallel. Note that the 
 
 ## Extensions
 
-LamdaTest is designed to be easily extensible.
+LambdaTest is designed to be easily extensible.
 
 * **Test generation**. The clean simple design of LambdaTest makes generation of tests easy. See the Generate demo for some simple examples.
-* **New actions**. New actions are easily defined. See the code in `src\main\scala\com\fortysevendeg\lambdatest\package.scala` for examples. Actions typically use the methods of `LamdaState` and the eval method of `LambdaAct`. These methods should not be called directly in user test code. Wrappers are one kind of user defined action (see the Wrappers demo).
+* **New actions**. New actions are easily defined. See the code in `src\main\scala\com\fortysevendeg\lambdatest\package.scala` for examples. Actions typically use the methods of `LambdaState` and the eval method of `LambdaAct`. These methods should not be called directly in user test code. Wrappers are one kind of user defined action (see the Wrappers demo).
 * **Alternate reporters**. Reporters collect and display the results of tests. Reporters are included for both StdOut (for tests run directly) and SBT (for tests run using the SBT test command). Custom reporters can created by extending the `LambdaReporter` trait.
 
 ## Contributing
