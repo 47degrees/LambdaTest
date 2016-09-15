@@ -17,15 +17,16 @@ LambdaTest has the following features.
 
 ## Comparison with ScalaTest and Specs2
 
-| Feature                | LambdaTest | ScalaTest    | Specs2       |
-| ---------------------- | ---------- | ------------ | ------------ |
-| lines of code          |  ~1K       | ~ 400K       |  ~50K        |
-| written in             | Scala      | Scala/Java   | Scala/Java   |
-| functional/immutable   | yes        | no           | no           | 
-| easy to customize      | yes        | no           | no           |
-| easy to generate tests | yes        | no           | no           |
-| wrap code              | wrappers   | before/after | before/after |
-| supports ScalaCheck    | yes        | yes          | yes          |
+| Feature                | LambdaTest      | ScalaTest    | Specs2       |
+| ---------------------- | --------------- | ------------ | ------------ |
+| lines of code          |  ~1K            | ~ 400K       |  ~50K        |
+| written in             | Scala           | Scala/Java   | Scala/Java   |
+| functional/immutable   | yes             | no           | no           | 
+| easy to customize      | yes             | no           | no           |
+| easy to generate tests | yes             | no           | no           |
+| wrap code              | wrappers        | before/after | before/after |
+| supports ScalaCheck    | yes             | yes          | yes          |
+| dependencies           | only ScalaCheck | lots         | lots         |
 
 LambdaTest has a simple clean fully functional/immutable API that makes it
 easy to define new kinds of assertions and compound testing forms (such as wrappers). 
