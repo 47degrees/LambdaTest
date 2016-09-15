@@ -25,6 +25,7 @@ LambdaTest has the following features.
 | easy to customize      | yes        | no           | no           |
 | easy to generate tests | yes        | no           | no           |
 | wrap code              | wrappers   | before/after | before/after |
+| supports ScalaCheck    | yes        | yes          | yes          |
 
 LambdaTest has a simple clean fully functional/immutable API that makes it
 easy to define new kinds of assertions and compound testing forms (such as wrappers). 
