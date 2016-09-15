@@ -19,15 +19,13 @@ libraryDependencies ++= Seq(
   "com.persist" % "persist-logging_2.11" % "1.2.4" % "test"
 )
 
-publishTo <<= version { v: String =>
+publishTo := {
   val nexus = "https://oss.sonatype.org/"
-  if (v.trim.endsWith("SNAPSHOT"))
-    Some("snapshots" at nexus + "content/repositories/snapshots")
+  if (isSnapshot.value)
+    Some("Snapshots" at nexus + "content/repositories/snapshots")
   else
-    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+    Some("Releases" at nexus + "service/local/staging/deploy/maven2")
 }
-
-//useGpg := true
 
 lazy val gpgFolder = sys.env.getOrElse("GPG_FOLDER", ".")
 
