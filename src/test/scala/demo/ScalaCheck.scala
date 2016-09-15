@@ -18,21 +18,24 @@ class ScalaCheck extends LambdaTest {
           (a + b).length > a.length && (a + b).length > b.length
         }
       }) +
-      test("gen")(assertSC(params=Test.Parameters.default.withMinSuccessfulTests(200)){
-        forAll(choose(1,1000)) {n=>
-        n  > 0 && n <= 1000}
+      test("gen")(assertSC(params = Test.Parameters.default.withMinSuccessfulTests(200)) {
+        forAll(choose(1, 1000)) { n =>
+          n > 0 && n <= 1000
+        }
       }) +
-      test("exists")(assertSC(){
-        exists(choose(0,10)) { _ == 3 }
+      test("exists")(assertSC() {
+        exists(choose(0, 10)) {
+          _ == 3
+        }
       })
     }
   }
 }
 
-  object ScalaCheck {
+object ScalaCheck {
 
-    def main(args: Array[String]): Unit = {
-      run("CB", new ScalaCheck)
-    }
-
+  def main(args: Array[String]): Unit = {
+    run("CB", new ScalaCheck)
   }
+
+}

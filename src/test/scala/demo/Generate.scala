@@ -5,10 +5,10 @@ import com.fortysevendeg.lambdatest._
 import scala.util.Random
 
 class Generate extends LambdaTest {
-  val s = Seq(0, 5, 6, 3)
+  val s = List(0, 5, 6, 3)
 
   val act = {
-    label("Seq Tests") {
+    label("List Tests") {
       s.zipWithIndex.map {
         case (i, j) => {
           test(s"Elem test $j")(

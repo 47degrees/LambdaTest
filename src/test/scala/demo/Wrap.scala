@@ -28,7 +28,7 @@ class Wrap extends LambdaTest {
     SingleLambdaAct(t => {
       val system = ActorSystem("test")
       val host = InetAddress.getLocalHost.getHostName
-      val loggingSystem = LoggingSystem(system, "test", "1.0.0", "localhost", appenderBuilders = Seq(FileAppender))
+      val loggingSystem = LoggingSystem(system, "test", "1.0.0", "localhost", appenderBuilders = List(FileAppender))
       try {
         body.eval(t)
       } finally {

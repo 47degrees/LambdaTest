@@ -17,7 +17,7 @@ package object lambdatest {
     * @param act a state transformation.
     * @return a LambdaAct the contains only the single act state tranformation.
     */
-  def SingleLambdaAct(act: LambdaState => LambdaState): LambdaAct = LambdaAct(Seq(act))
+  def SingleLambdaAct(act: LambdaState => LambdaState): LambdaAct = LambdaAct(List(act))
 
   /**
     * Converts a Seq[LambdaAct] to a LambdaAct.
@@ -25,7 +25,7 @@ package object lambdatest {
     * @return the LambdaAct.
     */
   implicit def GroupLambdaAct(x: Seq[LambdaAct]): LambdaAct = {
-    x.foldLeft[LambdaAct](LambdaAct(Seq()))((a, b) => a + b)
+    x.foldLeft[LambdaAct](LambdaAct(List()))((a, b) => a + b)
   }
 
   private def pos(offset: Int = 0): String = {

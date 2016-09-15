@@ -110,7 +110,7 @@ case class LambdaState private[lambdatest](
     this.copy(reporter = reporter2, sawFail = true)
   }
 
-  private [lambdatest] def eval(body: Seq[LambdaState => LambdaState], parallel: Boolean): LambdaState = {
+  private [lambdatest] def eval(body: List[LambdaState => LambdaState], parallel: Boolean): LambdaState = {
     if (parallel && body.size >= 2) {
       implicit val ec: ExecutionContext = scala.concurrent.ExecutionContext.global
       val first = body.head

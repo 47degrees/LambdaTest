@@ -3,9 +3,9 @@ package com.fortysevendeg.lambdatest
 /**
   * A sequence of tests.
   *
-  * @param acts a sequence of the state changes that occur when running each test.
+  * @param acts a list of the state changes that occur when running each test.
   */
-case class LambdaAct(acts: Seq[LambdaState => LambdaState]) {
+case class LambdaAct(acts: List[LambdaState => LambdaState]) {
   /**
     * Combines two LambdaAct's.
     *
