@@ -17,14 +17,16 @@ LambdaTest has the following features.
 
 ## Comparison with ScalaTest and Specs2
 
-| Feature                | LambdaTest | ScalaTest    | Specs2       |
-| ---------------------- | ---------- | ------------ | ------------ |
-| lines of code          |  ~1K       | ~ 400K       |  ~50K        |
-| written in             | Scala      | Scala/Java   | Scala/Java   |
-| functional/immutable   | yes        | no           | no           | 
-| easy to customize      | yes        | no           | no           |
-| easy to generate tests | yes        | no           | no           |
-| wrap code              | wrappers   | before/after | before/after |
+| Feature                | LambdaTest      | ScalaTest    | Specs2       |
+| ---------------------- | --------------- | ------------ | ------------ |
+| lines of code          |  ~1K            | ~ 400K       |  ~50K        |
+| written in             | Scala           | Scala/Java   | Scala/Java   |
+| functional/immutable   | yes             | no           | no           | 
+| easy to customize      | yes             | no           | no           |
+| easy to generate tests | yes             | no           | no           |
+| wrap code              | wrappers        | before/after | before/after |
+| supports ScalaCheck    | yes             | yes          | yes          |
+| major dependencies     | only ScalaCheck | lots         | lots         |
 
 LambdaTest has a simple clean fully functional/immutable API that makes it
 easy to define new kinds of assertions and compound testing forms (such as wrappers). 
@@ -33,10 +35,10 @@ an entire test suite rather than having to write each test manually.
 
 Wrappers offer many advantages over use of before and after.
 
-* Single function rather than 2
-* Can catch exceptions
-* Can hide state need both before and after
-* Can be applied at any level
+* Single function (wrapper) rather than 2 (before and after).
+* Can catch exceptions.
+* Can hide state needed both before and after.
+* Can be applied at any level.
 
 All these features are discussed below with links to demo code that illustrate the
 feature.
