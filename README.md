@@ -19,11 +19,12 @@ LambdaTest has the following features.
 
 * **Reporter**. Used to report test results.
 * **State**. All state needed to run tests is stored in objects of type `LambdaState`. State objects are immutable. 
-* **Action**. Actions transform an old state to a new state and are objects of type `LambdaAct`. Each `LambdaAct` object contains an ordered sequence of transforms. Each transform maps an old state to a new state. A `LambdaAct` with exactly one transform is called a single action, with no transforms is call an empty action and with two or more transforms is called a multiple action. Actions can be combined using the infix `+` operator.
+* **Action**. Actions transform an old state to a new state and are objects of type `LambdaAct`. Each `LambdaAct` object contains an ordered list of transforms. Each transform maps an old state to a new state. A `LambdaAct` with exactly one transform is called a single action, with no transforms is call an empty action and with two or more transforms is called a multiple action. Actions can be combined using the infix `+` operator.
 
 Actions are created using functions that create objects of type `LambdaAct`. These functions are also informally refered to as actions.
 
-Multiple actions can also be specified as a sequence of actions. This is done via an implicit conversion from `Seq[LambdaAct]` to `LambdaAct`. See the Generate demo for an example that used this conversion.
+Multiple actions can also be specified as a list of actions. This is done via an implicit conversion from `Seq[LambdaAct]` to `LambdaAct`. See the [Generate](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Generate.scala) 
+demo for an example that used this conversion.
 
 ## Documentation
 
@@ -51,7 +52,7 @@ If you want to run tests via SBT then the `build.sbt` file should specify
 
     testFrameworks += new TestFramework("com.fortysevendeg.lambdatest.sbtinterface.LambdaFramework")
    
-To see a simple example look at the Example demo.
+To see a simple example look at the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo.
  
 ## Actions
  
@@ -65,18 +66,18 @@ Additional actions can be easily defined.
 
 Simple actions do not contain other actions.
 
-* **`assert`**. Tests a boolean predicate. See the Example demo.
-* **`assertEq`**. Tests that two values are equal. See the Example demo.
-* **`assertEx`**. Test that an exception is raised. See the example demo
-* **`assertSC`**. Used to test a ScalaCheck property. See the ScalaCheck example.
-* **`exec`**. Used to insert Scala code. See the Mutable example.
+* **`assert`**. Tests a boolean predicate. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo.
+* **`assertEq`**. Tests that two values are equal. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo.
+* **`assertEx`**. Test that an exception is raised. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo
+* **`assertSC`**. Used to test a ScalaCheck property. See the [ScalaCheck](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/ScalaCheck.scala) demo.
+* **`exec`**. Used to insert Scala code. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala) demo.
 
 #### Compound Actions
 
 Compound actions contain other actions within themselves.
 
-* **`label`**. Introduced a labeled block of code. See the Example demo.
-* **`test`**. Defines a named test. See the example demo.
+* **`label`**. Introduced a labeled block of code. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo.
+* **`test`**. Defines a named test. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo.
 
 #### Action Nesting Rules
 
@@ -92,16 +93,16 @@ Compound actions contain other actions within themselves.
 
 The testing system itself contains no mutable data. It does however have one kind of side effect: tests results are output. It would have been more pure to move the output entirely after the core functionallity, but it is nice to see test output incrementally as tests are run so a little purity is sacrificed.
 
-Although LambdaTest is ideal for testing pure functional code, it can also be used to test code with mutable state and side effects. See the Mutable demo.
+Although LambdaTest is ideal for testing pure functional code, it can also be used to test code with mutable state and side effects. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala) demo.
 
 ## Including Scala Code
 
 Suppose we have a test that contains several assertions.
 We can add arbitrary code as follows.
 
-* **Before all assertions**. Put the code in the body of the test action. See the Mutable demo.
-* **Between assertions**. Add exec actions between assertions. See the Mutable demo.
-* **After all assertions**. The can be done using a user defined compound action called a wrapper. See the Wrapper demo. Wrappers are used instead of the before and after features of other testing frameworks. Wrappers avoid the need to use mutable state and can easily capture exceptions
+* **Before all assertions**. Put the code in the body of the test action. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala) demo.
+* **Between assertions**. Add exec actions between assertions. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala) demo.
+* **After all assertions**. The can be done using a user defined compound action called a wrapper. See the [Wrap](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Wrap.scala) demo. Wrappers are used instead of the before and after features of other testing frameworks. Wrappers avoid the need to use mutable state and can easily capture exceptions
 
 ## Exceptions
 
@@ -121,8 +122,8 @@ If parallel is true, actions directly inside are run in parallel. Note that the 
 
 LambdaTest is designed to be easily extensible.
 
-* **Test generation**. The clean simple design of LambdaTest makes generation of tests easy. See the Generate demo for some simple examples.
-* **New actions**. New actions are easily defined. See the code in `src\main\scala\com\fortysevendeg\lambdatest\package.scala` for examples. Actions typically use the methods of `LambdaState` and the eval method of `LambdaAct`. These methods should not be called directly in user test code. Wrappers are one kind of user defined action (see the Wrappers demo).
+* **Test generation**. The clean simple design of LambdaTest makes generation of tests easy. See the [Generate](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Generate.scala) demo for some simple examples.
+* **New actions**. New actions are easily defined. See the code in [package.scala](https://github.com/47deg/LambdaTest/blob/master/src/main/scala/com/fortysevendeg/lambdatest/package.scala)demo/Generate.scala) for examples. Actions typically use the methods of `LambdaState` and the eval method of `LambdaAct`. These methods should not be called directly in user test code. Wrappers are one kind of user defined action (see the [Wrap](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Wrap.scala) demo).
 * **Alternate reporters**. Reporters collect and display the results of tests. Reporters are included for both StdOut (for tests run directly) and SBT (for tests run using the SBT test command). Custom reporters can created by extending the `LambdaReporter` trait.
 
 ## Contributing
