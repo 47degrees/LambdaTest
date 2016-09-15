@@ -96,7 +96,7 @@ Simple actions do not contain other actions.
 
 * **`assert`**. Tests a boolean predicate. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo.
 * **`assertEq`**. Tests that two values are equal. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo.
-* **`assertEx`**. Test that an exception is raised. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo
+* **`assertEx`**. Test that an exception is raised. See the [Except](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Except.scala) demo
 * **`assertSC`**. Used to test a ScalaCheck property. See the [ScalaCheck](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/ScalaCheck.scala) demo.
 * **`exec`**. Used to insert Scala code. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala) demo.
 
