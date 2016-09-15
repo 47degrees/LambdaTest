@@ -15,6 +15,32 @@ LambdaTest has the following features.
 * Can include ScalaCheck properties as tests.
 * Tests can be run either via SBT or directly.
 
+## Comparison with ScalaTest and Specs2
+
+| Feature                | LambdaTest | ScalaTest    | Specs2       |
+| ---------------------- | ---------- | ------------ | ------------ |
+| lines of code          |  ~1K       | ~ 400K       |  ~50K        |
+| written in             | Scala      | Scala/Java   | Scala/Java   |
+| functional/immutable   | yes        | no           | no           | 
+| easy to customize      | yes        | no           | no           |
+| easy to generate tests | yes        | no           | no           |
+| wrap code              | wrappers   | before/after | before/after |
+
+LambdaTest has a simple clean fully functional/immutable API that makes it
+easy to define new kinds of assertions and compound testing forms (such as wrappers). 
+This simple API also provides the option of having code that generates 
+an entire test suite rather than having to write each test manually.
+
+Wrappers offer many advantages over use of before and after.
+
+* Single function rather than 2
+* Can catch exceptions
+* Can hide state need both before and after
+* Can be applied at any level
+
+All these features are discussed below with links to demo code that illustrate the
+feature.
+
 ## Concepts
 
 * **Reporter**. Used to report test results.
