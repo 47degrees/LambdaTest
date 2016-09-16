@@ -36,6 +36,7 @@ an entire test suite rather than having to write each test manually.
 Wrappers offer many advantages over use of before and after.
 
 * Single function (wrapper) rather than 2 (before and after).
+* Does not require mutable state.
 * Can catch exceptions.
 * Can hide state needed both before and after.
 * Can be applied at any level.
