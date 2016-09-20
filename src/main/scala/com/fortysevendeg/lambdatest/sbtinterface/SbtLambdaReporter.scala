@@ -1,7 +1,7 @@
 package com.fortysevendeg.lambdatest.sbtinterface
 
-import com.fortysevendeg.lambdatest.{LambdaOptions, LambdaReporter}
-import org.scalatools.testing.{Event, EventHandler, Logger, Result}
+import com.fortysevendeg.lambdatest.{ LambdaOptions, LambdaReporter }
+import org.scalatools.testing.{ Event, EventHandler, Logger, Result }
 
 private[lambdatest] object SbtLambdaReporter {
   def apply(loggers: Array[Logger], eventHandler: EventHandler) = {
@@ -9,10 +9,12 @@ private[lambdatest] object SbtLambdaReporter {
   }
 }
 
-private[lambdatest] case class SbtLambdaReporter private[sbtinterface](loggers: Array[Logger],
-                                                   eventHandler: EventHandler,
-                                                   tests: Int = 0,
-                                                   failed: Int = 0) extends LambdaReporter {
+private[lambdatest] case class SbtLambdaReporter private[sbtinterface] (
+  loggers: Array[Logger],
+  eventHandler: EventHandler,
+  tests: Int = 0,
+  failed: Int = 0
+) extends LambdaReporter {
 
   private def i(depth: Int, offset: Int = 0) = {
     val cnt = math.max((depth * LambdaOptions.indent) + offset, 0)
@@ -40,14 +42,14 @@ private[lambdatest] case class SbtLambdaReporter private[sbtinterface](loggers: 
   }
 
   override def report(depth: Int, s: String): SbtLambdaReporter = {
-    for (log <- loggers) {
+    for (log ← loggers) {
       log.info(fix(depth, s))
     }
     this
   }
 
   override def reportFail(depth: Int, s: String): SbtLambdaReporter = {
-    for (log <- loggers) {
+    for (log ← loggers) {
       if (LambdaOptions.useColor) {
         log.error(fix(depth, s"${Console.RED}$s${Console.RESET}", -1))
       } else {
@@ -58,7 +60,7 @@ private[lambdatest] case class SbtLambdaReporter private[sbtinterface](loggers: 
   }
 
   override def reportOk(depth: Int, s: String): SbtLambdaReporter = {
-    for (log <- loggers) {
+    for (log ← loggers) {
       if (LambdaOptions.useColor) {
         log.info(fix(depth, s"${Console.GREEN}$s${Console.RESET}"))
       } else {

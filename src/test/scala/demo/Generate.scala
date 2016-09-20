@@ -3,6 +3,7 @@ package demo
 import com.fortysevendeg.lambdatest._
 
 import scala.util.Random
+// format: OFF
 
 class Generate extends LambdaTest {
   val s = List(0, 5, 6, 3)

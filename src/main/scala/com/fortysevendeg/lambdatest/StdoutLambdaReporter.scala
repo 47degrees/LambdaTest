@@ -16,7 +16,7 @@ object StdoutLambdaReporter {
   * @param tests the number of tests.
   * @param failed  the number of failed tests.
   */
-case class StdoutLambdaReporter private[lambdatest](tests: Int = 0, failed: Int = 0) extends LambdaReporter {
+case class StdoutLambdaReporter private[lambdatest] (tests: Int = 0, failed: Int = 0) extends LambdaReporter {
 
   private def i(depth: Int) = {
     val cnt = depth * LambdaOptions.indent

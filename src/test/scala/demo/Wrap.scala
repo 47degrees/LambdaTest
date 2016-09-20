@@ -11,10 +11,10 @@ import scala.language.postfixOps
 
 class Wrap extends LambdaTest {
 
-  import java.io.{BufferedReader, FileReader}
+  import java.io.{ BufferedReader, FileReader }
 
-  def fileWrap(fileName: String)(body: BufferedReader => LambdaAct): LambdaAct = {
-    SingleLambdaAct(t => {
+  def fileWrap(fileName: String)(body: BufferedReader ⇒ LambdaAct): LambdaAct = {
+    SingleLambdaAct(t ⇒ {
       val br = new BufferedReader(new FileReader(fileName))
       try {
         body(br).eval(t)
@@ -25,7 +25,7 @@ class Wrap extends LambdaTest {
   }
 
   def logWrap(body: LambdaAct): LambdaAct = {
-    SingleLambdaAct(t => {
+    SingleLambdaAct(t ⇒ {
       val system = ActorSystem("test")
       val host = InetAddress.getLocalHost.getHostName
       val loggingSystem = LoggingSystem(system, "test", "1.0.0", "localhost", appenderBuilders = List(FileAppender))
@@ -41,6 +41,8 @@ class Wrap extends LambdaTest {
   case class LogTest() extends ClassLogging {
     def test = log.info("Log test")
   }
+
+  // format: OFF
 
   def act = {
     fileWrap("foobar.txt") { f =>

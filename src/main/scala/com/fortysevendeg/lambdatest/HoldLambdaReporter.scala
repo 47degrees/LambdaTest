@@ -20,9 +20,11 @@ object HoldLambdaReporter {
   * @param failed the number of failed tests.
   * @param hold
   */
-case class HoldLambdaReporter private[lambdatest](tests: Int = 0,
-                                                  failed: Int = 0,
-                                                  private val hold: List[HoldItem] = List.empty[HoldItem]) extends LambdaReporter {
+case class HoldLambdaReporter private[lambdatest] (
+  tests: Int = 0,
+  failed: Int = 0,
+  private val hold: List[HoldItem] = List.empty[HoldItem]
+) extends LambdaReporter {
 
   /**
     * Called when an assertion succeeds.
@@ -52,7 +54,6 @@ case class HoldLambdaReporter private[lambdatest](tests: Int = 0,
   override def reportFail(depth: Int, s: String): HoldLambdaReporter =
     this.copy(hold = HoldItem("reportFail", depth, s) +: hold)
 
-
   /**
     * Reports the result of a successful test.
     * @param depth the indentation level.
@@ -79,13 +80,13 @@ case class HoldLambdaReporter private[lambdatest](tests: Int = 0,
     */
   def flush(reporter: LambdaReporter): LambdaReporter = {
     hold.reverse.foldLeft(reporter) {
-      case (reporter, i) =>
+      case (reporter, i) ⇒
         i.kind match {
-          case "ok" => reporter.ok(i.s)
-          case "failed" => reporter.fail(i.s)
-          case "report" => reporter.report(i.depth, i.s)
-          case "reportOk" => reporter.reportOk(i.depth, i.s)
-          case "reportFail" => reporter.reportFail(i.depth, i.s)
+          case "ok" ⇒ reporter.ok(i.s)
+          case "failed" ⇒ reporter.fail(i.s)
+          case "report" ⇒ reporter.report(i.depth, i.s)
+          case "reportOk" ⇒ reporter.reportOk(i.depth, i.s)
+          case "reportFail" ⇒ reporter.reportFail(i.depth, i.s)
         }
     }
   }

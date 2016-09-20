@@ -1,6 +1,6 @@
 package com.fortysevendeg.lambdatest
 
-import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.config.{ Config, ConfigFactory }
 
 /**
   * Options used for testing.
@@ -9,7 +9,7 @@ object LambdaOptions {
   /**
     * The LambdaTest configuration.
     */
-  val config:Config = ConfigFactory.load().getConfig("com.fortysevendeg.lambdatest")
+  val config: Config = ConfigFactory.load().getConfig("com.fortysevendeg.lambdatest")
 
   /**
     * Output lines for asserts that succeed.

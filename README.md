@@ -1,5 +1,7 @@
 # LambdaTest
 
+[![Build Status](https://travis-ci.org/47deg/LambdaTest.svg?branch=master)](https://travis-ci.org/47deg/LambdaTest)
+
 *Note to 47 Degrees people. This repo will be changed from private to public once documentation and reviews are done.
 Comments, suggestions and pull requests are welcome.
 Since the goals are to keep this system small and extensible,
@@ -66,7 +68,7 @@ demo for an example that used this conversion.
 
 Include LambdaTest jars
 
-    "com.fortyseven" % "lambda-test" % "1.0.0" % "test"
+    "com.fortyseven" % "lambda-test_2.11" % "1.0.0" % "test"
    
 Each test file should  
  

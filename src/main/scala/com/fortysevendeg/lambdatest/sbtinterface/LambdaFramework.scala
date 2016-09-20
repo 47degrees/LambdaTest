@@ -1,6 +1,6 @@
 package com.fortysevendeg.lambdatest.sbtinterface
 
-import org.scalatools.testing.{Fingerprint, Framework, Logger, Runner}
+import org.scalatools.testing.{ Fingerprint, Framework, Logger, Runner }
 
 private[lambdatest] class LambdaFramework extends Framework {
   override def tests(): Array[Fingerprint] = Array(new LambdaFinderprint)

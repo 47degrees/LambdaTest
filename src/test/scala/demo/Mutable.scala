@@ -2,6 +2,8 @@ package demo
 
 import com.fortysevendeg.lambdatest._
 
+// format: OFF
+
 class Mutable extends LambdaTest {
 
   val act = test("Mutable") {

@@ -1,8 +1,12 @@
+import scalariform.formatter.preferences._
+import com.typesafe.sbt.SbtScalariform
+import com.typesafe.sbt.SbtScalariform.ScalariformKeys
+
 name := "lambda-test"
 
 organization := "com.fortysevendeg"
 
-version := "1.0.0"
+version := "0.0.1"
 
 scalaVersion := "2.11.8"
 
@@ -19,6 +23,39 @@ libraryDependencies ++= Seq(
   "com.persist" % "persist-logging_2.11" % "1.2.4" % "test"
 )
 
+// Scalariform forces indent after infix plus (with no option to override)
+// This makes tests less readable
+// So tests include # format: OFF
+
+SbtScalariform.scalariformSettings
+
+ScalariformKeys.preferences := ScalariformKeys.preferences.value
+.setPreference(SpacesWithinPatternBinders, true)
+.setPreference(SpaceBeforeColon, false)
+.setPreference(SpaceInsideParentheses, false)
+.setPreference(SpaceInsideBrackets, false)
+.setPreference(SpacesAroundMultiImports,true)
+.setPreference(PreserveSpaceBeforeArguments, false)
+.setPreference(CompactStringConcatenation,false)
+.setPreference(DanglingCloseParenthesis,Force)
+.setPreference(CompactControlReadability, false)
+.setPreference(AlignParameters, false)
+.setPreference(AlignArguments, true)
+.setPreference(AlignSingleLineCaseStatements, false)
+.setPreference(DoubleIndentClassDeclaration, false)
+.setPreference(IndentLocalDefs, false)
+.setPreference(MultilineScaladocCommentsStartOnFirstLine, false)
+.setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, true)
+.setPreference(RewriteArrowSymbols, true)
+
+
+lazy val publishSnapshot = taskKey[Unit]("Publish only if the version is a SNAPSHOT")
+
+publishSnapshot := Def.taskDyn {
+  if (isSnapshot.value) Def.task { PgpKeys.publishSigned.value }
+  else Def.task(println("Actual version is not a Snapshot. Skipping publish."))
+}.value
+
 publishTo := {
   val nexus = "https://oss.sonatype.org/"
   if (isSnapshot.value)
@@ -27,7 +64,24 @@ publishTo := {
     Some("Releases" at nexus + "service/local/staging/deploy/maven2")
 }
 
+organizationName := "47 Degrees"
+
+organizationHomepage := Some(new URL("http://47deg.com"))
+
+scmInfo := Some(ScmInfo(url("https://github.com/47deg/github4s"), "https://github.com/47deg/github4s.git"))
+
 lazy val gpgFolder = sys.env.getOrElse("GPG_FOLDER", ".")
+
+pgpPassphrase := Some(sys.env.getOrElse("GPG_PASSPHRASE", "").toCharArray)
+
+pgpPublicRing := file(s"$gpgFolder/pubring.gpg")
+
+pgpSecretRing := file(s"$gpgFolder/secring.gpg")
+
+credentials += Credentials("Sonatype Nexus Repository Manager",
+  "oss.sonatype.org",
+  sys.env.getOrElse("PUBLISH_USERNAME", ""),
+  sys.env.getOrElse("PUBLISH_PASSWORD", ""))
 
 publishMavenStyle := true
 

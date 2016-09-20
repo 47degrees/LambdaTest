@@ -2,6 +2,8 @@ package demo
 
 import com.fortysevendeg.lambdatest._
 
+// format: OFF
+
 class Example extends LambdaTest {
 
   val act = label("Initial Tests") {

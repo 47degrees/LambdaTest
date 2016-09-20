@@ -1,7 +1,7 @@
 package com.fortysevendeg.lambdatest
 
 import scala.concurrent.duration.Duration
-import scala.concurrent.{Await, ExecutionContext, Future}
+import scala.concurrent.{ Await, ExecutionContext, Future }
 
 /**
   * Companion object for LambdaState class.
@@ -26,24 +26,25 @@ object LambdaState {
   * @param inTest
   * @param startTime
   */
-case class LambdaState private[lambdatest](
-                                       reporter: LambdaReporter,
-                                       private val indent: Int = 0,
-                                       private val sawFail: Boolean = false,
-                                       private val inTest: Boolean = false,
-                                       private val startTime: Long = 0) {
+case class LambdaState private[lambdatest] (
+  reporter: LambdaReporter,
+  private val indent: Int = 0,
+  private val sawFail: Boolean = false,
+  private val inTest: Boolean = false,
+  private val startTime: Long = 0
+) {
   /**
-    *This method is used to run test.
+    * This method is used to run test.
     * @param name the name of the tests.
     * @param body a LambdaAct containing all the test actions to be run.
     * @param parallel true, if the top level actions in body are to be run in parallel.
     */
-  def run(name: String, body: => LambdaAct, parallel: Boolean): Unit = {
+  def run(name: String, body: ⇒ LambdaAct, parallel: Boolean): Unit = {
     val t1 = beginTests(name)
     val t2 = try {
       body.eval(t1, parallel)
     } catch {
-      case ex: Exception =>
+      case ex: Exception ⇒
         val f = ex.getStackTrace()(0)
         val p = s"${f.getFileName} Line ${f.getLineNumber}"
         t1.unExpected(ex, p)
@@ -106,32 +107,32 @@ case class LambdaState private[lambdatest](
       reporter
     }
     val reporter2 = reporter1
-    .reportFail(indent, s"Fail: $info ($pos)")
+      .reportFail(indent, s"Fail: $info ($pos)")
     this.copy(reporter = reporter2, sawFail = true)
   }
 
-  private [lambdatest] def eval(body: List[LambdaState => LambdaState], parallel: Boolean): LambdaState = {
+  private[lambdatest] def eval(body: List[LambdaState ⇒ LambdaState], parallel: Boolean): LambdaState = {
     if (parallel && body.size >= 2) {
       implicit val ec: ExecutionContext = scala.concurrent.ExecutionContext.global
       val first = body.head
       val t1 = Future(first(this))
       val rest = body.tail
       val state = this.copy(reporter = HoldLambdaReporter())
-      val tn = for (test <- rest) yield {
+      val tn = for (test ← rest) yield {
         Future(test(state))
       }
       val tn1 = Future.sequence(t1 +: tn)
       val states = Await.result(tn1, Duration.Inf)
       val s1 = states.tail.foldLeft(states.head) {
-        case (t, h) =>
+        case (t, h) ⇒
           t.copy(reporter = h.reporter.asInstanceOf[HoldLambdaReporter].flush(t.reporter))
       }
       val sf = states.foldLeft(false) {
-        case (b, s) => s.sawFail || b
+        case (b, s) ⇒ s.sawFail || b
       }
       s1.copy(sawFail = sf)
     } else {
-      val t1 = body.foldLeft(this)((t, test) => {
+      val t1 = body.foldLeft(this)((t, test) ⇒ {
         test(t)
       })
       t1
@@ -146,7 +147,7 @@ case class LambdaState private[lambdatest](
     * @param pos the source position of the test.
     * @return the new state.
     */
-  def test(name: String, body: => LambdaAct, parallel: Boolean, pos: String): LambdaState = {
+  def test(name: String, body: ⇒ LambdaAct, parallel: Boolean, pos: String): LambdaState = {
     val reporter1 = if (inTest) {
       reporter.reportFail(indent, "Test not permitted inside other tests").fail("test in test")
     } else {
@@ -168,7 +169,7 @@ case class LambdaState private[lambdatest](
         body.eval(f1, parallel)
       }
     } catch {
-      case ex: Exception =>
+      case ex: Exception ⇒
         val f1 = f.copy(reporter = f.reporter.report(indent, s"Test: $name"))
         f1.unExpected(ex, pos)
     }
@@ -189,7 +190,7 @@ case class LambdaState private[lambdatest](
     * @return the new state.
     */
 
-  def label(name: String = "", body: => LambdaAct, parallel: Boolean, pos: String): LambdaState = {
+  def label(name: String = "", body: ⇒ LambdaAct, parallel: Boolean, pos: String): LambdaState = {
     val indent1 = if (name == "") 0 else 1
     val f = this.copy(indent = indent + indent1, sawFail = false)
 
@@ -208,7 +209,7 @@ case class LambdaState private[lambdatest](
         body.eval(f1, parallel)
       }
     } catch {
-      case ex: Exception =>
+      case ex: Exception ⇒
         val f1 = f.copy(reporter = if (name != "") f.reporter.report(indent, name) else reporter)
         f1.unExpected(ex, pos)
     }
@@ -217,14 +218,14 @@ case class LambdaState private[lambdatest](
 
   private def traceException(ex: Exception, pos: String): LambdaState = {
     if (LambdaOptions.outExceptionTrace) {
-      val stack = ex.getStackTrace.map(frame => s"${
+      val stack = ex.getStackTrace.map(frame ⇒ s"${
         frame.getFileName
       } Line ${
         frame.getLineNumber
       }")
-      val stack1 = stack.takeWhile(frame => frame != pos)
+      val stack1 = stack.takeWhile(frame ⇒ frame != pos)
       val reporter1 = stack1.foldLeft(reporter) {
-        (reporter, frame) =>
+        (reporter, frame) ⇒
           reporter.reportFail(indent + 1, frame)
       }
       this.copy(reporter = reporter1)

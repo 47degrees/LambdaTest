@@ -1,6 +1,7 @@
 package demo
 
 import com.fortysevendeg.lambdatest._
+// format: OFF
 
 class Except extends LambdaTest {
 
