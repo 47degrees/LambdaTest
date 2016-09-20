@@ -38,7 +38,7 @@ Wrappers offer many advantages over use of before and after.
 * Can be applied at any level.
 
 All these features are discussed below with links to demo code that illustrate the
-feature.
+features.
 
 ## Concepts
 
