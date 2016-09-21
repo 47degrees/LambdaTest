@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/47deg/LambdaTest.svg?branch=master)](https://travis-ci.org/47deg/LambdaTest)
 [![codecov.io](http://codecov.io/github/47deg/LambdaTest/coverage.svg?branch=master)](http://codecov.io/github/47deg/LambdaTest?branch=master)
 
-LambdaTest is a testing library for Scala code. Although it is itelf fully functional/immutable it
+LambdaTest is a testing library for Scala code. Although it is itelf fully functional/immutable, it
 can be used for testing any Scala code. 
 
 LambdaTest has the following features.
