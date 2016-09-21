@@ -9,7 +9,8 @@ import scala.concurrent.{ Await, ExecutionContext, Future }
 object LambdaState {
   /**
     * Create a new LambdaState in the testing initial state.
-    * @param reporter  an optuonal reporter.
+    *
+    * @param reporter an optuonal reporter.
     * @return the new initial state object.
     */
   def apply(reporter: LambdaReporter) = new LambdaState(reporter)
@@ -20,6 +21,7 @@ object LambdaState {
   * Operations create new immutable state object.
   * The methods here should not be used in user test code (that extends LambdaTest).
   * These methods can be called from new LambdaAct code.
+  *
   * @param reporter the reporter used to handle output when this state changes.
   * @param indent
   * @param sawFail
@@ -35,8 +37,9 @@ case class LambdaState private[lambdatest] (
 ) {
   /**
     * This method is used to run test.
-    * @param name the name of the tests.
-    * @param body a LambdaAct containing all the test actions to be run.
+    *
+    * @param name     the name of the tests.
+    * @param body     a LambdaAct containing all the test actions to be run.
     * @param parallel true, if the top level actions in body are to be run in parallel.
     */
   def run(name: String, body: ⇒ LambdaAct, parallel: Boolean): Unit = {
@@ -76,13 +79,14 @@ case class LambdaState private[lambdatest] (
 
   /**
     * Called when an assertion succeeds.
+    *
     * @param info a message for this assertion.
-    * @param pos the source position of the assertion.
+    * @param pos  the source position of the assertion.
     * @return the new state.
     */
   def success(info: String, pos: String): LambdaState = {
     val reporter1 = if (!inTest) {
-      reporter.reportFail(indent, "Assertions must be inside test").fail("not inside")
+      reporter.reportFail(indent, s"Fail: Assertions must be inside test ($pos)").fail("not inside")
     } else {
       reporter
     }
@@ -96,19 +100,19 @@ case class LambdaState private[lambdatest] (
 
   /**
     * Called when an assertion fails.
+    *
     * @param info a message for this assertion.
-    * @param pos the source position of the assertion.
+    * @param pos  the source position of the assertion.
     * @return the new state.
     */
   def fail(info: String, pos: String): LambdaState = {
     val reporter1 = if (!inTest) {
-      reporter.reportFail(indent, "Assertions must be inside test").fail("not inside")
+      reporter.reportFail(indent, s"Fail: Assertions must be inside test ($pos)").fail("not inside")
     } else {
       reporter
+        .reportFail(indent, s"Fail: $info ($pos)")
     }
-    val reporter2 = reporter1
-      .reportFail(indent, s"Fail: $info ($pos)")
-    this.copy(reporter = reporter2, sawFail = true)
+    this.copy(reporter = reporter1, sawFail = true)
   }
 
   private[lambdatest] def eval(body: List[LambdaState ⇒ LambdaState], parallel: Boolean): LambdaState = {
@@ -140,16 +144,17 @@ case class LambdaState private[lambdatest] (
   }
 
   /**
-    *  Used to implement a test.
-    * @param name the name of the test.
-    * @param body the actions in the test.
+    * Used to implement a test.
+    *
+    * @param name     the name of the test.
+    * @param body     the actions in the test.
     * @param parallel true, if the top level actions are to be run in parallel.
-    * @param pos the source position of the test.
+    * @param pos      the source position of the test.
     * @return the new state.
     */
   def test(name: String, body: ⇒ LambdaAct, parallel: Boolean, pos: String): LambdaState = {
     val reporter1 = if (inTest) {
-      reporter.reportFail(indent, "Test not permitted inside other tests").fail("test in test")
+      reporter.reportFail(indent, s"Fail: Test not permitted inside other tests ($pos)").fail("test in test")
     } else {
       reporter
     }
@@ -182,11 +187,12 @@ case class LambdaState private[lambdatest] (
   }
 
   /**
-    *  Used to implement a labeled block.
-    * @param name the name of the labeled block.
-    * @param body the actions in the labeled block.
+    * Used to implement a labeled block.
+    *
+    * @param name     the name of the labeled block.
+    * @param body     the actions in the labeled block.
     * @param parallel true, if the top level actions are to be run in parallel.
-    * @param pos the source position of the labeled block.
+    * @param pos      the source position of the labeled block.
     * @return the new state.
     */
 
@@ -236,7 +242,8 @@ case class LambdaState private[lambdatest] (
 
   /**
     * Called when an unexpected exception is encounted.
-    * @param ex the exception.
+    *
+    * @param ex  the exception.
     * @param pos the position where the exception was detected. This is used to prune the stack trace.
     * @return the new state.
     */

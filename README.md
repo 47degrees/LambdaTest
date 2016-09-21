@@ -1,6 +1,7 @@
 # LambdaTest
 
 [![Build Status](https://travis-ci.org/47deg/LambdaTest.svg?branch=master)](https://travis-ci.org/47deg/LambdaTest)
+[![codecov.io](http://codecov.io/github/47deg/LambdaTest/coverage.svg?branch=master)](http://codecov.io/github/47deg/LambdaTest?branch=master)
 
 LambdaTest has the following features.
 
@@ -109,6 +110,10 @@ Compound actions contain other actions within themselves.
 * Assertions must either directly or indirectly inside a test.
 * A test may not be directly or indirectly inside another test.
 
+See [Bad](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Bad.scala) demo 
+  for what not to do.
+
+
 ## Running Tests
 
 * **Via SBT**. Classes that extend the `LambdaTest` trait can be run using the SBT test commands.
@@ -142,6 +147,8 @@ The run function and the label and test actions have an optional parallel parame
 By default those actions directly inside are run sequentially in order.
 
 If parallel is true, actions directly inside are run in parallel. Note that the output still occurs in the specified order.
+
+See [Parallel](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Parallel.scala) demo.
 
 ## Extensions
 

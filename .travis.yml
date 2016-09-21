@@ -6,3 +6,7 @@ jdk:
 
 # Demo tests are designed to fail; so only test compile
 script: sbt test:compile
+
+after_success:
+   - (sbt clean coverage "test:runMain demo.All" test || true):runMain   - sbt coverageReport
+   - bash <(curl -s https://codecov.io/bash)

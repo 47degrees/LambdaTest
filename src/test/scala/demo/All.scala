@@ -9,6 +9,8 @@ object All {
     Generate.main(args)
     Wrap.main(args)
     ScalaCheck.main(args)
+    Parallel.main(args)
+    Bad.main(args)
   }
 
 }
