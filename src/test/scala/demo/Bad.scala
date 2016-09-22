@@ -12,15 +12,15 @@ class Bad extends LambdaTest {
 
   def act = {
     assert(false, "should have been in test") +
-    assert(true, "should also have been in a test") +
-    test("foo") {
-      test("should not be inside another test") {
-        assert(true, "inside 2 tests")
+      assert(true, "should also have been in a test") +
+      test("foo") {
+        test("should not be inside another test") {
+          assert(true, "inside 2 tests")
+        }
+      } +
+      test("throws") {
+        assert(fail, "unexpected exception")
       }
-    } +
-    test("throws") {
-      assert(fail, "unexpected exception")
-    }
   }
 }
 
