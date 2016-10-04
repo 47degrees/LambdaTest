@@ -1,7 +1,8 @@
 package com.fortysevendeg.lambdatest.sbtinterface
 
-import com.fortysevendeg.lambdatest.{ LambdaOptions, LambdaReporter }
+import com.fortysevendeg.lambdatest.LambdaReporter
 import org.scalatools.testing.{ Event, EventHandler, Logger, Result }
+import com.fortysevendeg.lambdatest.LambdaOptions._
 
 private[lambdatest] object SbtLambdaReporter {
   def apply(loggers: Array[Logger], eventHandler: EventHandler) = {
@@ -13,11 +14,12 @@ private[lambdatest] case class SbtLambdaReporter private[sbtinterface] (
   loggers: Array[Logger],
   eventHandler: EventHandler,
   tests: Int = 0,
-  failed: Int = 0
+  failed: Int = 0,
+  options: LambdaOptions = InitialLambdaOptions
 ) extends LambdaReporter {
 
   private def i(depth: Int, offset: Int = 0) = {
-    val cnt = math.max((depth * LambdaOptions.indent) + offset, 0)
+    val cnt = math.max((depth * options.indent) + offset, 0)
     s"${" " * cnt}"
   }
 
@@ -50,7 +52,7 @@ private[lambdatest] case class SbtLambdaReporter private[sbtinterface] (
 
   override def reportFail(depth: Int, s: String): SbtLambdaReporter = {
     for (log ← loggers) {
-      if (LambdaOptions.useColor) {
+      if (options.useColor) {
         log.error(fix(depth, s"${Console.RED}$s${Console.RESET}", -1))
       } else {
         log.error(fix(depth, s, -1))
@@ -61,7 +63,7 @@ private[lambdatest] case class SbtLambdaReporter private[sbtinterface] (
 
   override def reportOk(depth: Int, s: String): SbtLambdaReporter = {
     for (log ← loggers) {
-      if (LambdaOptions.useColor) {
+      if (options.useColor) {
         log.info(fix(depth, s"${Console.GREEN}$s${Console.RESET}"))
       } else {
         log.info(fix(depth, s))
@@ -74,4 +76,9 @@ private[lambdatest] case class SbtLambdaReporter private[sbtinterface] (
     eventHandler.handle(E(name, false))
     this.copy(failed = failed + 1, tests = tests + 1)
   }
+
+  def changeOptions(change: LambdaOptions ⇒ LambdaOptions): LambdaReporter = {
+    this.copy(options = change(this.options))
+  }
+
 }

@@ -2,6 +2,7 @@ package com.fortysevendeg.lambdatest
 
 import scala.concurrent.duration.Duration
 import scala.concurrent.{ Await, ExecutionContext, Future }
+import LambdaOptions._
 
 /**
   * Companion object for LambdaState class.
@@ -29,11 +30,12 @@ object LambdaState {
   * @param startTime
   */
 case class LambdaState private[lambdatest] (
-  reporter: LambdaReporter,
+  val reporter: LambdaReporter = StdoutLambdaReporter(),
   private val indent: Int = 0,
   private val sawFail: Boolean = false,
   private val inTest: Boolean = false,
-  private val startTime: Long = 0
+  private val startTime: Long = 0,
+  val options: LambdaOptions = InitialLambdaOptions
 ) {
   /**
     * This method is used to run test.
@@ -56,7 +58,7 @@ case class LambdaState private[lambdatest] (
   }
 
   private def beginTests(name: String): LambdaState = {
-    val reporter1 = if (LambdaOptions.outHeader) reporter.report(0, s"***** running $name") else reporter
+    val reporter1 = if (options.outHeader) reporter.report(0, s"***** running $name") else reporter
     this.copy(reporter = reporter1, startTime = System.currentTimeMillis())
   }
 
@@ -64,7 +66,7 @@ case class LambdaState private[lambdatest] (
     val elapsed = (System.currentTimeMillis() - startTime) / 1000.0
     val seconds = f"$elapsed%2.3f seconds"
     val s1 = if (reporter.failed > 0) {
-      if (LambdaOptions.useColor) {
+      if (options.useColor) {
         s"${Console.RED} ${reporter.failed} failed${Console.RESET}"
       } else {
         s" ${reporter.failed} failed"
@@ -73,7 +75,7 @@ case class LambdaState private[lambdatest] (
       s""
     }
     val s = s"***** $name: ${reporter.tests} tests$s1 $seconds"
-    val reporter1 = if (LambdaOptions.outSummary) reporter.report(0, s) else reporter
+    val reporter1 = if (options.outSummary) reporter.report(0, s) else reporter
     this.copy(reporter = reporter1)
   }
 
@@ -90,7 +92,7 @@ case class LambdaState private[lambdatest] (
     } else {
       reporter
     }
-    val reporter2 = if (LambdaOptions.outOk && !LambdaOptions.onlyIfFail) {
+    val reporter2 = if (options.outOk && !options.onlyIfFail) {
       reporter1.reportOk(indent, s"Ok: $info ($pos)")
     } else {
       reporter1
@@ -160,7 +162,7 @@ case class LambdaState private[lambdatest] (
     }
     val f = this.copy(reporter = reporter1, indent = indent + 1, inTest = true, sawFail = false)
     val t1 = try {
-      if (LambdaOptions.onlyIfFail) {
+      if (options.onlyIfFail) {
         val h = HoldLambdaReporter().report(indent, s"Test: $name")
         val f1 = f.copy(reporter = h)
         val f2 = body.eval(f1, parallel)
@@ -175,8 +177,7 @@ case class LambdaState private[lambdatest] (
       }
     } catch {
       case ex: Exception ⇒
-        val f1 = f.copy(reporter = f.reporter.report(indent, s"Test: $name"))
-        f1.unExpected(ex, pos)
+        f.unExpected(ex, pos)
     }
     val reporter3 = if (t1.sawFail) {
       t1.reporter.fail(name)
@@ -201,7 +202,7 @@ case class LambdaState private[lambdatest] (
     val f = this.copy(indent = indent + indent1, sawFail = false)
 
     val t1 = try {
-      if (LambdaOptions.onlyIfFail) {
+      if (options.onlyIfFail) {
         val h = HoldLambdaReporter()
         val f1 = f.copy(reporter = if (name != "") h.report(indent, name) else h)
         val f2 = body.eval(f1, parallel)
@@ -216,14 +217,13 @@ case class LambdaState private[lambdatest] (
       }
     } catch {
       case ex: Exception ⇒
-        val f1 = f.copy(reporter = if (name != "") f.reporter.report(indent, name) else reporter)
-        f1.unExpected(ex, pos)
+        f.unExpected(ex, pos)
     }
     this.copy(reporter = t1.reporter, sawFail = sawFail || t1.sawFail)
   }
 
   private def traceException(ex: Exception, pos: String): LambdaState = {
-    if (LambdaOptions.outExceptionTrace) {
+    if (options.outExceptionTrace) {
       val stack = ex.getStackTrace.map(frame ⇒ s"${
         frame.getFileName
       } Line ${
@@ -254,5 +254,14 @@ case class LambdaState private[lambdatest] (
     }"
     val reporter2 = reporter1.reportFail(indent, s"$info ($pos)")
     this.copy(reporter = reporter2, sawFail = true).traceException(ex, pos)
+  }
+
+  /**
+    * Changes the options of the state and its associated reporter.
+    * @param change a function to change the options.
+    * @return the state with the options changed.
+    */
+  def changeOptions(change: LambdaOptions ⇒ LambdaOptions): LambdaState = {
+    this.copy(reporter = this.reporter.changeOptions(change), options = change(this.options))
   }
 }

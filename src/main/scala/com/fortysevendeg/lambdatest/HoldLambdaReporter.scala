@@ -1,6 +1,12 @@
 package com.fortysevendeg.lambdatest
 
-private[lambdatest] case class HoldItem(kind: String, depth: Int, s: String)
+import LambdaOptions._
+
+private[lambdatest] trait HoldTrait
+
+private[lambdatest] case class HoldItem(kind: String, depth: Int, s: String) extends HoldTrait
+
+private[lambdatest] case class HoldChange(change: LambdaOptions ⇒ LambdaOptions) extends HoldTrait
 
 /**
   * The companion object for the hold reporter.
@@ -8,6 +14,7 @@ private[lambdatest] case class HoldItem(kind: String, depth: Int, s: String)
 object HoldLambdaReporter {
   /**
     * The contructor for a hold reporter.
+    *
     * @return the hold reporter.
     */
   def apply() = new HoldLambdaReporter()
@@ -16,18 +23,20 @@ object HoldLambdaReporter {
 /**
   * A reporter that holds all messages  to reported until
   * the flush method is called.
-  * @param tests the number of tests.
+  *
+  * @param tests  the number of tests.
   * @param failed the number of failed tests.
   * @param hold
   */
 case class HoldLambdaReporter private[lambdatest] (
   tests: Int = 0,
   failed: Int = 0,
-  private val hold: List[HoldItem] = List.empty[HoldItem]
+  private val hold: List[HoldTrait] = List.empty[HoldTrait]
 ) extends LambdaReporter {
 
   /**
     * Called when an assertion succeeds.
+    *
     * @param name the name of the assertion.
     * @return a new LambdaReporter.
     */
@@ -37,8 +46,9 @@ case class HoldLambdaReporter private[lambdatest] (
 
   /**
     * Reports simple output lines (such as for labels).
+    *
     * @param depth the indentation level.
-    * @param s the string to be reported.
+    * @param s     the string to be reported.
     * @return a new LambdaReporter.
     */
   override def report(depth: Int, s: String): HoldLambdaReporter = {
@@ -47,8 +57,9 @@ case class HoldLambdaReporter private[lambdatest] (
 
   /**
     * Reports the result of a failing test.
+    *
     * @param depth the indentation level.
-    * @param s the string to be reported.
+    * @param s     the string to be reported.
     * @return a new LambdaReporter.
     */
   override def reportFail(depth: Int, s: String): HoldLambdaReporter =
@@ -56,8 +67,9 @@ case class HoldLambdaReporter private[lambdatest] (
 
   /**
     * Reports the result of a successful test.
+    *
     * @param depth the indentation level.
-    * @param s the string to be reported.
+    * @param s     the string to be reported.
     * @return a new LambdaReporter.
     */
   override def reportOk(depth: Int, s: String): HoldLambdaReporter = {
@@ -66,6 +78,7 @@ case class HoldLambdaReporter private[lambdatest] (
 
   /**
     * Called when an assertion fails.
+    *
     * @param name the name of the assertion.
     * @return a new LambdaReporter.
     */
@@ -75,12 +88,15 @@ case class HoldLambdaReporter private[lambdatest] (
 
   /**
     * Moves held messages to another reporter.
+    *
     * @param reporter the reporter to move the messages to.
     * @return reporter after all messages have been added to it.
     */
   def flush(reporter: LambdaReporter): LambdaReporter = {
     hold.reverse.foldLeft(reporter) {
-      case (reporter, i) ⇒
+      case (reporter, hc: HoldChange) ⇒
+        reporter.changeOptions(hc.change)
+      case (reporter, i: HoldItem) ⇒
         i.kind match {
           case "ok" ⇒ reporter.ok(i.s)
           case "failed" ⇒ reporter.fail(i.s)
@@ -90,4 +106,14 @@ case class HoldLambdaReporter private[lambdatest] (
         }
     }
   }
+
+  /**
+    * Change the options in the reporter.
+    * @param change a function to change the options
+    * @return reporter with the changed options.
+    */
+  def changeOptions(change: LambdaOptions ⇒ LambdaOptions): LambdaReporter = {
+    this.copy(hold = HoldChange(change) +: hold)
+  }
+
 }

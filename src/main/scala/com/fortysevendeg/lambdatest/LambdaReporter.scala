@@ -1,5 +1,7 @@
 package com.fortysevendeg.lambdatest
 
+import LambdaOptions._
+
 /**
   * The common trait for all reporters.
   * Reporters are used to output test results.
@@ -52,4 +54,12 @@ trait LambdaReporter {
     * @return a new LambdaReporter.
     */
   def reportFail(depth: Int, s: String): LambdaReporter
+
+  /**
+    * Changes the reporter options.
+    * @param change a function to change the options.
+    * @return  the reporter with the options chanaged.
+    */
+  def changeOptions(change: LambdaOptions ⇒ LambdaOptions): LambdaReporter
+
 }

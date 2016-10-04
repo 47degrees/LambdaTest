@@ -1,10 +1,9 @@
 package com.fortysevendeg
 
-import java.util.concurrent.Future
-
 import scala.concurrent.duration.Duration
 import scala.concurrent.{ Await, Promise }
 import scala.language.implicitConversions
+import lambdatest.LambdaOptions._
 
 /**
   * Actions used in tests.
@@ -21,6 +20,7 @@ package object lambdatest {
 
   /**
     * Converts a Seq[LambdaAct] to a LambdaAct.
+    *
     * @param x the sequence.
     * @return the LambdaAct.
     */
@@ -40,14 +40,16 @@ package object lambdatest {
     * @param body     the test to be run.
     * @param parallel an option to run top level actions in parallel.
     * @param reporter an option to specify an alternate reporter.
+    * @param change an option to change the options for the run.
     */
   def run(
     name: String,
-    body: ⇒ LambdaTest,
+    body: ⇒ LambdaTestRun,
     parallel: Boolean = false,
-    reporter: LambdaReporter = StdoutLambdaReporter()
+    reporter: LambdaReporter = StdoutLambdaReporter(),
+    change: LambdaOptions ⇒ LambdaOptions = (x: LambdaOptions) ⇒ x
   ): Unit = {
-    LambdaState(reporter).run(name, body.act, parallel)
+    LambdaState(reporter).changeOptions(change).run(name, body.act, parallel)
   }
 
   /**
@@ -137,9 +139,10 @@ package object lambdatest {
 
   /**
     * An assertion that checks a ScalaCheck property.
+    *
     * @param params
     * @param showOk an option that if false supresees the output for success.
-    * @param prop the ScalaCheck property to be checked.
+    * @param prop   the ScalaCheck property to be checked.
     * @return the LambdaAct.
     */
   def assertSC(params: Test.Parameters = Test.Parameters.default, showOk: Boolean = true)(prop: org.scalacheck.Prop): LambdaAct = {
@@ -172,9 +175,10 @@ package object lambdatest {
 
   /**
     * A compund action that defines a single test.
-    * @param name the name of the test.
-    * @param parallel  if true, run top level actions in body in parallel.
-    * @param body  the actions inside the test.
+    *
+    * @param name     the name of the test.
+    * @param parallel if true, run top level actions in body in parallel.
+    * @param body     the actions inside the test.
     * @return the LambdaAct.
     */
   def test(name: String, parallel: Boolean = false)(body: ⇒ LambdaAct): LambdaAct = {
@@ -184,9 +188,10 @@ package object lambdatest {
 
   /**
     * A compund action that defines a labeled block of code.
-    * @param name the name of the label.
-    * @param parallel  if true, run top level actions in body in parallel.
-    * @param body  the actions inside the label.
+    *
+    * @param name     the name of the label.
+    * @param parallel if true, run top level actions in body in parallel.
+    * @param body     the actions inside the label.
     * @return the LambdaAct.
     */
   def label(name: String, parallel: Boolean = false)(body: ⇒ LambdaAct): LambdaAct = {
@@ -196,14 +201,34 @@ package object lambdatest {
 
   /**
     * An action that executed the code in its body
+    *
     * @param body the Scala code to be executed.
     * @return the LambdaAct.
     */
   def exec[T](body: ⇒ Unit): LambdaAct = {
+    SingleLambdaAct(t ⇒ {
+      val p1 = pos()
+      try {
+        body
+        t
+      } catch {
+        case ex: Exception ⇒
+          t.unExpected(ex, p1)
+      }
+    })
+  }
+
+  /**
+    * Changes the options within its body.
+    * @param change a function to change the options.
+    * @param body the actions inside.
+    * @return the LambdaAct.
+    */
+  def changeOptions(change: LambdaOptions ⇒ LambdaOptions)(body: ⇒ LambdaAct): LambdaAct = {
     val p = pos()
     SingleLambdaAct(t ⇒ try {
-      body
-      t
+      val t1 = t.changeOptions(change)
+      body.eval(t1)
     } catch {
       case ex: Exception ⇒
         t.unExpected(ex, p)

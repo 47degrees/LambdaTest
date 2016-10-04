@@ -6,7 +6,7 @@ name := "lambda-test"
 
 organization := "com.fortysevendeg"
 
-version := "1.0.0"
+version := "1.1.0"
 
 scalaVersion := "2.11.8"
 
@@ -15,6 +15,8 @@ scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
 viewSettings
 
 testFrameworks += new TestFramework("com.fortysevendeg.lambdatest.sbtinterface.LambdaFramework")
+
+fork in Test := true
 
 libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.13.2",

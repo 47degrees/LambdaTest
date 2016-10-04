@@ -66,7 +66,7 @@ demo for an example that used this conversion.
 
 Include LambdaTest jars
 
-    "com.fortyseven" % "lambda-test_2.11" % "1.0.0" % "test"
+    "com.fortyseven" % "lambda-test_2.11" % "1.1.0" % "test"
    
 Each test file should  
  
@@ -107,6 +107,7 @@ Compound actions contain other actions within themselves.
 
 * **`label`**. Introduced a labeled block of code. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo.
 * **`test`**. Defines a named test. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/.scala) demo.
+* **`changeOptions`**. Used to change options within its body. See the [FailOnly](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/coverage/FailOnly.scala) test.
 
 #### Action Nesting Rules
 

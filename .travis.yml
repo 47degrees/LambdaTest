@@ -8,6 +8,6 @@ jdk:
 script: sbt test:compile
 
 after_success:
-   - (sbt clean coverage "test:runMain demo.All" test || true)
+   - (sbt clean coverage "test:runMain demo.All" "test:runMain coverage.All" test || true)
    - sbt coverageReport
    - bash <(curl -s https://codecov.io/bash)

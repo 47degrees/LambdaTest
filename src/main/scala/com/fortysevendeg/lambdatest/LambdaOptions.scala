@@ -3,46 +3,46 @@ package com.fortysevendeg.lambdatest
 import com.typesafe.config.{ Config, ConfigFactory }
 
 /**
-  * Options used for testing.
+  * Configuration options.
   */
 object LambdaOptions {
   /**
-    * The LambdaTest configuration.
+    * The LambdaTest configuration from application.conf.
     */
   val config: Config = ConfigFactory.load().getConfig("com.fortysevendeg.lambdatest")
 
   /**
-    * Output lines for asserts that succeed.
+    * The initial options.
     */
-  val outOk = config.getBoolean(("outOk"))
+  val InitialLambdaOptions = LambdaOptions()
 
   /**
-    * Output an initial header line.
+    * LambdaTest configuration options.
+    *
+    * @param outOk             output lines for asserts that succeed.
+    * @param outHeader         output an initial header line.
+    * @param outSummary        output an final summery line.
+    * @param outExceptionTrace output a stack trace of any unexpected exceptions.
+    * @param onlyIfFail        output only those parts that contain failures.
+    * @param useColor          use colors in the output.
+    * @param indent            number of characters to indent each level of output.
     */
-  val outHeader = config.getBoolean(("outHeader"))
+  case class LambdaOptions(
 
-  /**
-    * Output an final summery line.
-    */
-  val outSummary = config.getBoolean(("outSummary"))
+    outOk: Boolean = config.getBoolean(("outOk")),
 
-  /**
-    * Output a stack trace of any unexpected exceptions.
-    */
-  val outExceptionTrace = config.getBoolean("outExceptionTrace")
+    outHeader: Boolean = config.getBoolean(("outHeader")),
 
-  /**
-    * Output only those parts that contain failures.
-    */
-  val onlyIfFail = config.getBoolean("onlyIfFail")
+    outSummary: Boolean = config.getBoolean(("outSummary")),
 
-  /**
-    *  Use colors in the output.
-    */
-  val useColor = config.getBoolean("useColor")
+    outExceptionTrace: Boolean = config.getBoolean("outExceptionTrace"),
 
-  /**
-    * Number of characters to indent each level of output.
-    */
-  val indent = config.getInt("indent")
+    onlyIfFail: Boolean = config.getBoolean("onlyIfFail"),
+
+    useColor: Boolean = config.getBoolean("useColor"),
+
+    indent: Int = config.getInt("indent")
+  )
+
 }
+

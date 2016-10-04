@@ -1,9 +1,10 @@
 package com.fortysevendeg.lambdatest
 
 /**
-  * Each class that contains tests should extend this trait.
+  * Each class (to be run by the run method but not SBT test)
+  * that contains tests should extend this trait.
   */
-trait LambdaTest {
+trait LambdaTestRun {
 
   /**
     * The collection of all tests indside the class.
@@ -12,3 +13,9 @@ trait LambdaTest {
     */
   def act: LambdaAct
 }
+
+/**
+  * Each class (to be run by either SBT test on the run method)
+  * that contains tests should extend this trait.
+  */
+trait LambdaTest extends LambdaTestRun
