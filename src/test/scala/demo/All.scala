@@ -9,10 +9,13 @@ class All extends LambdaTestRun {
     label("example")(new Example().act) +
     label("except")(new Except().act) +
     label("mutable")(new Mutable().act) +
+    label("immutable")(new Immutable().act) +
     label("generate")(new Generate().act) +
     label("wrap")(new Wrap().act) +
     label("scalaCheck")(new ScalaCheck().act) +
     label("parallel")(new Parallel().act) +
+    label("tags")(new Tag().act) +
+    label("timing")(new Timing().act) +
     label("bad")(new Bad().act)
   }
 }

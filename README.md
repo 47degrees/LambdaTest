@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/47deg/LambdaTest.svg?branch=master)](https://travis-ci.org/47deg/LambdaTest)
 [![codecov.io](http://codecov.io/github/47deg/LambdaTest/coverage.svg?branch=master)](http://codecov.io/github/47deg/LambdaTest?branch=master)
 
-LambdaTest is a testing library for Scala code. Although it is itelf fully functional/immutable, it
+LambdaTest is a testing library for Scala code. Although it is itself fully functional/immutable, it
 can be used for testing any Scala code. 
 
 LambdaTest has the following features.
@@ -26,6 +26,9 @@ LambdaTest has the following features.
 | easy to generate tests | yes             | no           | no           |
 | wrap code              | wrappers        | before/after | before/after |
 | supports ScalaCheck    | yes             | yes          | yes          |
+| tagged/ignored tests   | yes             | yes          | yes          |
+| timed tests            | yes             | yes          | no           |
+| load tests             | yes             | no           | no           |
 | major dependencies     | only ScalaCheck | lots         | lots         |
 
 LambdaTest has a simple clean fully functional/immutable API that makes it
@@ -66,7 +69,7 @@ demo for an example that used this conversion.
 
 Include LambdaTest jars
 
-    "com.fortyseven" % "lambda-test_2.11" % "1.1.0" % "test"
+    "com.fortyseven" % "lambda-test_2.11" % "1.1.1" % "test"
    
 Each test file should  
  
@@ -100,6 +103,7 @@ Simple actions do not contain other actions.
 * **`assertEx`**. Test that an exception is raised. See the [Except](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Except.scala) demo
 * **`assertSC`**. Used to test a ScalaCheck property. See the [ScalaCheck](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/ScalaCheck.scala) demo.
 * **`exec`**. Used to insert Scala code. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala) demo.
+* **`assertLoad`**. Runs an expression multiple times and reports mean, max, and stdDev. Can assert a maximum mean and max. See the [Timing](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Timing.scala) demo.
 
 #### Compound Actions
 
@@ -108,11 +112,13 @@ Compound actions contain other actions within themselves.
 * **`label`**. Introduced a labeled block of code. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo.
 * **`test`**. Defines a named test. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/.scala) demo.
 * **`changeOptions`**. Used to change options within its body. See the [FailOnly](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/coverage/FailOnly.scala) test.
+* **`timer`**. Reports the execution time of its body. See the [Timing](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Timing.scala) demo.
+* **`assertTiming`**. Reports the execution time of its body. Fails if a max time is exceeded. See the [Timing](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Timing.scala) demo.
+* **`nest`**. Used to nest declarations in immutable tests. See the [Immutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Immutable.scala) demo.
 
-#### Action Nesting Rules
+#### Assertion Nesting Rule
 
 * Assertions must either directly or indirectly inside a test.
-* A test may not be directly or indirectly inside another test.
 
 See [Bad](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Bad.scala) demo 
   for what not to do.
@@ -135,7 +141,8 @@ Suppose we have a test that contains several assertions.
 We can add arbitrary code as follows.
 
 * **Before all assertions**. Put the code in the body of the test action. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala) demo.
-* **Between assertions**. Add exec actions between assertions. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala) demo.
+* **Between assertions (mutable)**. Add exec actions between assertions. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala) demo.
+* **Between assertions (immutable)**. Use nesting. See the [Immutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Immutable.scala) demo.
 * **After all assertions**. The can be done using a user defined compound action called a wrapper. See the [Wrap](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Wrap.scala) demo. Wrappers are used instead of the before and after features of other testing frameworks. Wrappers avoid the need to use mutable state and can easily capture exceptions
 
 ## Exceptions
@@ -143,7 +150,23 @@ We can add arbitrary code as follows.
 Expected exceptions can be checked using the assertEx action.
 
 Unexpected exceptions are caught and treated as test failures. Where possible an unexpected exception will not stop later tests from being run.
- 
+
+## Tags
+
+The label and test actions can have sets of tags that can be used to selectively execute only some tests.
+There are options includeTags and excludeTags that can be set to select the subset of tests to be run.
+
+By default, including the tag "ignore" on a label or test causes that action to be excluded.
+
+See the [Tag](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Tag.scala) demo.
+
+## Timing
+
+There are several actions that can be used to time code.
+Some are assertions that fail is the coe eruns too long.
+
+See the [Timing](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Timing.scala) demo.
+
 ## Parallel Execution
 
 The run function and the label and test actions have an optional parallel parameter.

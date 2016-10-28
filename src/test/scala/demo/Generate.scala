@@ -1,8 +1,8 @@
 package demo
 
 import com.fortysevendeg.lambdatest._
-
 import scala.util.Random
+
 // format: OFF
 
 class Generate extends LambdaTest {
@@ -13,7 +13,7 @@ class Generate extends LambdaTest {
       s.zipWithIndex.map {
         case (i, j) => {
           test(s"Elem test $j")(
-            assertEq(i, j)
+            assertEq(j, i)
           )
         }
       }

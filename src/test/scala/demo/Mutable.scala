@@ -7,20 +7,16 @@ import com.fortysevendeg.lambdatest._
 class Mutable extends LambdaTest {
 
   val act = test("Mutable") {
-    var x = 0
-    assertEq(x, 0) +
+    var s = scala.collection.mutable.Set.empty[Int]
+    assertEq(s.size, 0, "empty") +
     exec {
-      x += 2
+      s add 3
     } +
-    assertEq(x, 2) +
+    assertEq(s.size, 1, "insert") +
     exec {
-      x *= 2
+      s remove 3
     } +
-    assertEq(x, 4) +
-    exec {
-      x = 5
-    } +
-    assertEq(x, 5)
+    assertEq(s.size, 0, "remove")
   }
 }
 

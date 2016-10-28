@@ -1,9 +1,11 @@
 package com.fortysevendeg
 
-import scala.concurrent.duration.Duration
-import scala.concurrent.{ Await, Promise }
+import scala.concurrent.duration._
+import scala.concurrent._
 import scala.language.implicitConversions
 import lambdatest.LambdaOptions._
+import scala.util.{ Failure, Success, Try }
+import scala.language.postfixOps
 
 /**
   * Actions used in tests.
@@ -40,7 +42,7 @@ package object lambdatest {
     * @param body     the test to be run.
     * @param parallel an option to run top level actions in parallel.
     * @param reporter an option to specify an alternate reporter.
-    * @param change an option to change the options for the run.
+    * @param change   an option to change the options for the run.
     */
   def run(
     name: String,
@@ -89,11 +91,11 @@ package object lambdatest {
     SingleLambdaAct(t ⇒ try {
       val a1 = a
       val info0 = if (info == "") "" else s" ($info)"
-      val info1 = s"$a1$info0"
+      val info1 = s"[$a1] $info"
       if (a1 == b) {
         if (showOk) t.success(info1, p) else t
       } else {
-        t.fail(s"$a1 != $b$info0", p)
+        t.fail(s"[$a1 != $b] $info", p)
       }
     } catch {
       case ex: Exception ⇒
@@ -128,7 +130,7 @@ package object lambdatest {
           case None ⇒
             if (showOk) t.success(info, p) else t
           case Some(s) ⇒
-            t.fail(s"Exception fails check: $s$info1", p)
+            t.fail(s"Exception fails check ($s$info1)", p)
         }
     })
   }
@@ -178,25 +180,32 @@ package object lambdatest {
     *
     * @param name     the name of the test.
     * @param parallel if true, run top level actions in body in parallel.
+    * @param tags     tags for this test (default empty).
     * @param body     the actions inside the test.
     * @return the LambdaAct.
     */
-  def test(name: String, parallel: Boolean = false)(body: ⇒ LambdaAct): LambdaAct = {
+  def test(name: String, parallel: Boolean = false, tags: Set[String] = Set.empty[String])(body: ⇒ LambdaAct): LambdaAct = {
     val p = pos()
-    SingleLambdaAct(t ⇒ t.test(name, body, parallel, p))
+    SingleLambdaAct(t ⇒ if (t.options.checkTags(tags)) t.test(name, body, parallel, p) else t)
   }
 
   /**
     * A compund action that defines a labeled block of code.
     *
-    * @param name     the name of the label.
+    * @param name     the name of the label.  Default, no label line output and body is not nested.
     * @param parallel if true, run top level actions in body in parallel.
+    * @param tags     tags for this label (default empty).
     * @param body     the actions inside the label.
     * @return the LambdaAct.
     */
-  def label(name: String, parallel: Boolean = false)(body: ⇒ LambdaAct): LambdaAct = {
+  def label(name: String = "", parallel: Boolean = false, tags: Set[String] = Set.empty[String])(body: ⇒ LambdaAct): LambdaAct = {
     val p = pos()
-    SingleLambdaAct(t ⇒ t.label(name, body, parallel, p))
+    SingleLambdaAct(t ⇒ if (t.options.checkTags(tags)) t.label(name, body, parallel, p) else t)
+  }
+
+  def nest(body: ⇒ LambdaAct): LambdaAct = {
+    val p = pos()
+    SingleLambdaAct(t ⇒ t.label("", body, false, p))
   }
 
   /**
@@ -220,8 +229,9 @@ package object lambdatest {
 
   /**
     * Changes the options within its body.
+    *
     * @param change a function to change the options.
-    * @param body the actions inside.
+    * @param body   the actions inside.
     * @return the LambdaAct.
     */
   def changeOptions(change: LambdaOptions ⇒ LambdaOptions)(body: ⇒ LambdaAct): LambdaAct = {
@@ -234,4 +244,137 @@ package object lambdatest {
         t.unExpected(ex, p)
     })
   }
+
+  private def timeRound(micros: Long): FiniteDuration = {
+    val min = 20 // displayed count should be greater than this
+    val millis = micros / 1000
+    val secs = millis / 1000
+    if (secs > min) {
+      secs.seconds
+    } else if (millis > min) {
+      millis.millis
+    } else {
+      micros.microsecond
+    }
+  }
+
+  /**
+    * This action times its body and reports how long it ran.
+    *
+    * @param info a string to be reported
+    * @param body the actions to be timed.
+    * @return the LambdaAct.
+    */
+  def timer(info: String)(body: ⇒ LambdaAct): LambdaAct = {
+    val p = pos()
+    SingleLambdaAct {
+      t ⇒
+        val time0 = System.nanoTime()
+        val t1 = t.label(s"Start timer: $info", body, false, "")
+        val time1 = System.nanoTime()
+        val total = (time1 - time0) / 1000
+        t1.label(s"End timer: $info [${timeRound(total)}]", exec {}, false, "")
+    }
+  }
+
+  /**
+    * Ths assertion runs its body multiple time and reports the mean, max and standard deviation.
+    * It fails if the specified mean or max are exceeded.
+    *
+    * @param info    a string to be reported.
+    * @param warmup  the number of time to run its body before starting timing.
+    * @param repeat  the number of times to run and time the body.
+    * @param mean    the assertion fails if the mean exceeds this value.
+    * @param max     the assertion fails if the max exceeds this value.
+    * @param timeout the maximum time to wait for the body execution to complete.
+    * @param body    the code to be timed.
+    * @return the LambdaAct.
+    */
+  def assertLoad(
+    info: String,
+    warmup: Int = 10,
+    repeat: Int = 100,
+    mean: FiniteDuration = 10 millis,
+    max: FiniteDuration = 15 millis,
+    timeout: FiniteDuration = 1 second
+  )(body: ⇒ Unit): LambdaAct = {
+    val p = pos()
+    import scala.concurrent.ExecutionContext.Implicits.global
+
+    SingleLambdaAct {
+      case t ⇒
+        try {
+          for (i ← 1 to warmup) {
+            Await.result(Future(body), timeout)
+          }
+          val times = for (i ← 1 to repeat) yield {
+            val t0 = System.nanoTime()
+            Await.result(Future(body), timeout)
+            val t1 = System.nanoTime()
+            (t1 - t0) / 1000
+          }
+          val meanMicros = times.sum / times.length
+          val maxMicros = times.max
+          val stdDev = Math.sqrt((times.map(_ - meanMicros)
+            .map(v ⇒ v * v).sum) / times.length).toInt
+          val info1 = s"[mean:${
+            timeRound(meanMicros)
+          } max:${timeRound(maxMicros)} stdev:${
+            timeRound(stdDev)
+          }] $info"
+
+          if (meanMicros.micros > mean) {
+            t.fail(s"exceeds mean $info1 $meanMicros.micros $mean", p)
+          } else if (maxMicros.micros > max) {
+            t.fail(s"exceeds max $info1", p)
+          } else {
+            t.success(s"$info1", p)
+          }
+        } catch {
+          case ex: TimeoutException ⇒ t.fail(s"timeout: $info", p)
+          case ex: Exception ⇒ t.unExpected(ex, p)
+        }
+    }
+  }
+
+  /**
+    * This assertion times its body and fails if it takes longer than max.
+    *
+    * @param body    the actions to be timed.
+    * @param info    a string to be reported.
+    * @param max     the assertion fails if the body takes longer than this.
+    * @param timeout the maximum time to wait for the body execution to complete.
+    * @return the LambdaAct.
+    */
+  def assertTiming(body: ⇒ LambdaAct)(
+    info: String,
+    max: FiniteDuration = 100 millis,
+    timeout: FiniteDuration = 1 second
+  ): LambdaAct = {
+    import scala.concurrent.ExecutionContext.Implicits.global
+    val p = pos()
+
+    SingleLambdaAct {
+      case t ⇒
+        val t0 = System.nanoTime()
+        val f1 = Future(Try(body.eval(t)))
+        val r = Try(Await.result(f1, timeout))
+        val t1 = System.nanoTime()
+        val micros = (t1 - t0) / 1000
+        val elapsed = timeRound(micros)
+        val part: Int = ((elapsed / max) * 100).toInt
+        val times = s"$elapsed $part%"
+        r match {
+          case Failure(ex) ⇒ t.fail(s"exceeded timeout [$times] $info", p)
+          case Success(Success(t1: LambdaState)) ⇒
+            if (micros.micros > max) {
+              t1.fail(s"exceeded max [$times] $info", p)
+            } else {
+              t1.success(s"[$times] $info", p)
+            }
+          case Success(Failure(ex: Throwable)) ⇒ t.unExpected(ex, p)
+        }
+    }
+  }
+
 }

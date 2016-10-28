@@ -1,6 +1,7 @@
 package demo
 
 import com.fortysevendeg.lambdatest._
+
 // format: OFF
 
 class Except extends LambdaTest {
@@ -14,14 +15,14 @@ class Except extends LambdaTest {
   }
 
   val act =
-  label("Exception Tests") {
-    test("Throws Exception") {
-      assert(doFoo, "throw foo")
-    } +
-    test("Expect Exception") {
-      assertEx(doFoo, check = contains("bar"))
+    label("Exception Tests") {
+      test("Throws Exception") {
+        assert(doFoo, "throw foo")
+      } +
+      test("Expect Exception") {
+        assertEx(doFoo, check = contains("bar"))
+      }
     }
-  }
 }
 
 object Except {

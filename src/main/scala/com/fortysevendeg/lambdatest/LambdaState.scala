@@ -93,7 +93,8 @@ case class LambdaState private[lambdatest] (
       reporter
     }
     val reporter2 = if (options.outOk && !options.onlyIfFail) {
-      reporter1.reportOk(indent, s"Ok: $info ($pos)")
+      val info1 = if (info == "") "" else s" $info"
+      reporter1.reportOk(indent, s"Ok:$info1 ($pos)")
     } else {
       reporter1
     }
@@ -111,8 +112,8 @@ case class LambdaState private[lambdatest] (
     val reporter1 = if (!inTest) {
       reporter.reportFail(indent, s"Fail: Assertions must be inside test ($pos)").fail("not inside")
     } else {
-      reporter
-        .reportFail(indent, s"Fail: $info ($pos)")
+      val info1 = if (info == "") "" else s" $info"
+      reporter.reportFail(indent, s"Fail:$info1 ($pos)")
     }
     this.copy(reporter = reporter1, sawFail = true)
   }
@@ -155,12 +156,7 @@ case class LambdaState private[lambdatest] (
     * @return the new state.
     */
   def test(name: String, body: ⇒ LambdaAct, parallel: Boolean, pos: String): LambdaState = {
-    val reporter1 = if (inTest) {
-      reporter.reportFail(indent, s"Fail: Test not permitted inside other tests ($pos)").fail("test in test")
-    } else {
-      reporter
-    }
-    val f = this.copy(reporter = reporter1, indent = indent + 1, inTest = true, sawFail = false)
+    val f = this.copy(indent = indent + 1, inTest = true, sawFail = false)
     val t1 = try {
       if (options.onlyIfFail) {
         val h = HoldLambdaReporter().report(indent, s"Test: $name")
@@ -222,7 +218,7 @@ case class LambdaState private[lambdatest] (
     this.copy(reporter = t1.reporter, sawFail = sawFail || t1.sawFail)
   }
 
-  private def traceException(ex: Exception, pos: String): LambdaState = {
+  private def traceException(ex: Throwable, pos: String): LambdaState = {
     if (options.outExceptionTrace) {
       val stack = ex.getStackTrace.map(frame ⇒ s"${
         frame.getFileName
@@ -247,7 +243,7 @@ case class LambdaState private[lambdatest] (
     * @param pos the position where the exception was detected. This is used to prune the stack trace.
     * @return the new state.
     */
-  def unExpected(ex: Exception, pos: String): LambdaState = {
+  def unExpected(ex: Throwable, pos: String): LambdaState = {
     val reporter1 = if (!inTest) reporter.fail("top level") else reporter
     val info = s"Unexpected exception: ${
       ex.getMessage
@@ -258,6 +254,7 @@ case class LambdaState private[lambdatest] (
 
   /**
     * Changes the options of the state and its associated reporter.
+    *
     * @param change a function to change the options.
     * @return the state with the options changed.
     */

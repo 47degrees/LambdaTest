@@ -4,6 +4,7 @@ import com.fortysevendeg.lambdatest._
 import org.scalacheck.Prop._
 import org.scalacheck.Gen._
 import org.scalacheck.Test
+
 // format: OFF
 
 class ScalaCheck extends LambdaTest {

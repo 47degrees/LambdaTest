@@ -1,5 +1,12 @@
+11/1/2016 Version 1.1.1
+
+   Tests can now be nested.
+   Added nest action.
+   Added timing actions.
+   Support tagging/ignoring for label and test actions.
+
 10/2/2016 Version 1.1.0
 
    Options can now be changed in run method and by changeOptions action.
    Added LambdaTestRun for tests not to be run by SBT.
-   Added coverage test package to increase code coverage
+   Added coverage test package to increase code coverage.
