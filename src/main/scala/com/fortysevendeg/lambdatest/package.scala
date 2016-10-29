@@ -290,7 +290,7 @@ package object lambdatest {
     * @param body    the code to be timed.
     * @return the LambdaAct.
     */
-  def assertLoad(
+  def assertPerf(
     info: String,
     warmup: Int = 10,
     repeat: Int = 100,

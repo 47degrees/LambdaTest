@@ -32,7 +32,7 @@ class Timing extends LambdaTest {
             f(2 seconds)
           }
         }("this should timeout", max = 200 millis) +
-        assertLoad("load test", warmup = 10, repeat = 20, mean = 150 millis, max = 200 millis) {
+        assertPerf("perfromance test", warmup = 10, repeat = 20, mean = 150 millis, max = 200 millis) {
           f(100 millis)
         }
       }

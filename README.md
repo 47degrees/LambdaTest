@@ -28,7 +28,7 @@ LambdaTest has the following features.
 | supports ScalaCheck    | yes             | yes          | yes          |
 | tagged/ignored tests   | yes             | yes          | yes          |
 | timed tests            | yes             | yes          | no           |
-| load tests             | yes             | no           | no           |
+| performance tests      | yes             | no           | no           |
 | major dependencies     | only ScalaCheck | lots         | lots         |
 
 LambdaTest has a simple clean fully functional/immutable API that makes it
@@ -69,7 +69,7 @@ demo for an example that used this conversion.
 
 Include LambdaTest jars
 
-    "com.fortyseven" % "lambda-test_2.11" % "1.1.1" % "test"
+    "com.fortyseven" % "lambda-test_2.11" % "1.1.2" % "test"
    
 Each test file should  
  
@@ -103,7 +103,7 @@ Simple actions do not contain other actions.
 * **`assertEx`**. Test that an exception is raised. See the [Except](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Except.scala) demo
 * **`assertSC`**. Used to test a ScalaCheck property. See the [ScalaCheck](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/ScalaCheck.scala) demo.
 * **`exec`**. Used to insert Scala code. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala) demo.
-* **`assertLoad`**. Runs an expression multiple times and reports mean, max, and stdDev. Can assert a maximum mean and max. See the [Timing](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Timing.scala) demo.
+* **`assertPerf`**. Runs an expression multiple times and reports mean, max, and stdDev. Can assert a maximum mean and max. See the [Timing](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Timing.scala) demo.
 
 #### Compound Actions
 
