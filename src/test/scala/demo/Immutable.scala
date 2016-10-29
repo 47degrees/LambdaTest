@@ -7,7 +7,7 @@ import com.fortysevendeg.lambdatest._
 class Immutable extends LambdaTest {
 
   val act = test("empty") {
-    var s = Set.empty[Int]
+    val s = Set.empty[Int]
     assertEq(s.size, 0, "empty") +
     nest {
       val s1 = s + 3
