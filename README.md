@@ -163,7 +163,7 @@ See the [Tag](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/dem
 ## Timing
 
 There are several actions that can be used to time code.
-Some are assertions that fail is the coe eruns too long.
+Some are assertions that fail is the code runs too long.
 
 See the [Timing](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Timing.scala) demo.
 
@@ -175,7 +175,7 @@ By default those actions directly inside are run sequentially in order.
 
 If parallel is true, actions directly inside are run in parallel. Note that the output still occurs in the specified order.
 
-See [Parallel](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Parallel.scala) demo.
+See the [Parallel](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Parallel.scala) demo.
 
 ## Extensions
 
