@@ -69,7 +69,7 @@ demo for an example that used this conversion.
 
 Include LambdaTest jars
 
-    "com.fortyseven" % "lambda-test_2.11" % "1.1.2" % "test"
+    "com.fortysevendeg" % "lambda-test_2.11" % "1.1.2" % "test"
    
 Each test file should  
  
