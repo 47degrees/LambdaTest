@@ -6,9 +6,9 @@ name := "lambda-test"
 
 organization := "com.fortysevendeg"
 
-version := "1.1.2"
+version := "1.2.0"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.0"
 
 scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
 
@@ -19,10 +19,10 @@ testFrameworks += new TestFramework("com.fortysevendeg.lambdatest.sbtinterface.L
 fork in Test := true
 
 libraryDependencies ++= Seq(
-  "org.scalacheck" %% "scalacheck" % "1.13.2",
+  "org.scalacheck" %% "scalacheck" % "1.13.4",
   "org.scala-sbt" % "test-interface" % "1.0",
-  "com.typesafe" % "config" % "1.3.0",
-  "com.persist" % "persist-logging_2.11" % "1.2.4" % "test"
+  "com.typesafe" % "config" % "1.3.1",
+  "com.persist" % "persist-logging_2.12" % "1.3.0" % "test"
 )
 
 // Scalariform forces indent after infix plus (with no option to override)
