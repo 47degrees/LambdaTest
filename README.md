@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/47deg/LambdaTest.svg?branch=master)](https://travis-ci.org/47deg/LambdaTest)
 [![codecov.io](http://codecov.io/github/47deg/LambdaTest/coverage.svg?branch=master)](http://codecov.io/github/47deg/LambdaTest?branch=master)
-[![Maven Central](https://img.shields.io/maven-central/v/com.fortysevendeg/LambdaTest_2.12.svg)](https://maven-badges.herokuapp.com/maven-central/com.fortysevendeg/LambdaTest_2.12)
+[![Maven Central](https://img.shields.io/maven-central/v/com.fortysevendeg/lambda-test_2.12.svg)](https://maven-badges.herokuapp.com/maven-central/com.fortysevendeg/lambda-test_2.12)
 
 LambdaTest is a testing library for Scala code. Although it is itself fully functional/immutable, it
 can be used for testing any Scala code. 
