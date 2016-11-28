@@ -70,7 +70,7 @@ demo for an example that used this conversion.
 
 Include LambdaTest jar
 
-    "com.fortysevendeg" % "lambda-test_2.12" % "1.2.0" % "test"
+    "com.fortysevendeg" % "lambda-test_2.12" % "1.2.1" % "test"
 
     "com.fortysevendeg" % "lambda-test_2.11" % "1.1.2" % "test"
    
