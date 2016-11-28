@@ -49,7 +49,7 @@ case class LambdaState private[lambdatest] (
     val t2 = try {
       body.eval(t1, parallel)
     } catch {
-      case ex: Exception ⇒
+      case ex: Throwable ⇒
         val f = ex.getStackTrace()(0)
         val p = s"${f.getFileName} Line ${f.getLineNumber}"
         t1.unExpected(ex, p)
@@ -172,7 +172,7 @@ case class LambdaState private[lambdatest] (
         body.eval(f1, parallel)
       }
     } catch {
-      case ex: Exception ⇒
+      case ex: Throwable ⇒
         f.unExpected(ex, pos)
     }
     val reporter3 = if (t1.sawFail) {
@@ -212,7 +212,7 @@ case class LambdaState private[lambdatest] (
         body.eval(f1, parallel)
       }
     } catch {
-      case ex: Exception ⇒
+      case ex: Throwable ⇒
         f.unExpected(ex, pos)
     }
     this.copy(reporter = t1.reporter, sawFail = sawFail || t1.sawFail)

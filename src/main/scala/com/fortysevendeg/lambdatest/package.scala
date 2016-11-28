@@ -78,7 +78,7 @@ package object lambdatest {
         t.fail(info, pos)
       }
     } catch {
-      case ex: Exception ⇒
+      case ex: Throwable ⇒
         t.unExpected(ex, pos)
     })
   }
@@ -106,7 +106,7 @@ package object lambdatest {
         t.fail(s"[$a1 != $b] $info", pos)
       }
     } catch {
-      case ex: Exception ⇒
+      case ex: Throwable ⇒
         t.unExpected(ex, pos)
     })
   }
@@ -134,7 +134,7 @@ package object lambdatest {
       test
       t.fail(s"Expected exception not raised$info1", pos)
     } catch {
-      case ex: Exception ⇒
+      case ex: Throwable ⇒
         check(ex) match {
           case None ⇒
             if (showOk) t.success(info, pos) else t
@@ -182,7 +182,7 @@ package object lambdatest {
       Test.check(param, prop)
       cb.out(t, pos)
     } catch {
-      case ex: Exception ⇒
+      case ex: Throwable ⇒
         t.unExpected(ex, pos)
     })
   }
@@ -245,7 +245,7 @@ package object lambdatest {
         body
         t
       } catch {
-        case ex: Exception ⇒
+        case ex: Throwable ⇒
           t.unExpected(ex, pos)
       }
     })
@@ -264,7 +264,7 @@ package object lambdatest {
       val t1 = t.changeOptions(change)
       body.eval(t1)
     } catch {
-      case ex: Exception ⇒
+      case ex: Throwable ⇒
         t.unExpected(ex, pos)
     })
   }
@@ -357,7 +357,7 @@ package object lambdatest {
           }
         } catch {
           case ex: TimeoutException ⇒ t.fail(s"timeout: $info", pos)
-          case ex: Exception ⇒ t.unExpected(ex, pos)
+          case ex: Throwable ⇒ t.unExpected(ex, pos)
         }
     }
   }
