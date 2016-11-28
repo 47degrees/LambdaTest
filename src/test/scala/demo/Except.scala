@@ -8,7 +8,7 @@ class Except extends LambdaTest {
 
   def doFoo = throw new Exception("foo")
 
-  def contains(expect: String)(ex: Exception): Option[String] = {
+  def contains(expect: String)(ex: Throwable): Option[String] = {
     val msg = ex.getMessage
     val q = "\""
     if (msg.contains(expect)) None else Some(s"$q$msg$q does not contain $q$expect$q")

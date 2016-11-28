@@ -1,6 +1,10 @@
+11/28/2016 Version 1.2.1
+
+   Now catches Throwable rather than Exception (this will now catch Scala ???).
+
 11/5/2016 Version 1.2.0
 
-Scala 2.12
+   Scala 2.12
    
 11/1/2016 Version 1.1.2
 

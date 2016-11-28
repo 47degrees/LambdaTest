@@ -125,7 +125,7 @@ package object lambdatest {
   def assertEx(
     test: ⇒ Unit,
     info: ⇒ String = "",
-    check: Exception ⇒ Option[String] = (ex: Exception) ⇒ None,
+    check: Throwable ⇒ Option[String] = (ex: Throwable) ⇒ None,
     showOk: Boolean = true,
     pos: String = srcPos()
   ): LambdaAct = {
