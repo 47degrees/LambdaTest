@@ -41,8 +41,8 @@ This simple API also provides the option of having code that generates
 an entire test suite rather than having to write each test manually.
 
 Notes
-* Note 1. Via LambdaTestTiming extension.
-* Note 2. Via LambdaTestAsync extension.
+* Note 1. Via [LambdaTestTiming](https://github.com/47deg/LambdaTestTiming) extension.
+* Note 2. Via [LambdaTestAsync](https://github.com/47deg/LambdaTestAsync) extension.
 
 Wrappers offer many advantages over use of before and after.
 
