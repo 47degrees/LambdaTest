@@ -1,3 +1,9 @@
+1/1/2017 Version 1.3.0
+
+   Two new extensions: LambdaTestTiming and LambdaTestAsunc.
+   Moved timing tests to LambdaTestTiming.
+   Moved Akka Actor wrapper examples to LambdaTestAsync.
+
 11/28/2016 Version 1.2.1
 
    Now catches Throwable rather than Exception (this will now catch Scala ???).

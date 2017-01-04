@@ -15,7 +15,6 @@ class All extends LambdaTestRun {
     label("scalaCheck")(new ScalaCheck().act) +
     label("parallel")(new Parallel().act) +
     label("tags")(new Tag().act) +
-    label("timing")(new Timing().act) +
     label("bad")(new Bad().act)
   }
 }

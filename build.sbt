@@ -6,7 +6,7 @@ name := "lambda-test"
 
 organization := "com.fortysevendeg"
 
-version := "1.2.1"
+version := "1.3.0"
 
 scalaVersion := "2.12.0"
 
@@ -21,8 +21,7 @@ fork in Test := true
 libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.13.4",
   "org.scala-sbt" % "test-interface" % "1.0",
-  "com.typesafe" % "config" % "1.3.1",
-  "com.persist" % "persist-logging_2.12" % "1.3.0" % "test"
+  "com.typesafe" % "config" % "1.3.1"
 )
 
 // Scalariform forces indent after infix plus (with no option to override)
@@ -70,7 +69,7 @@ organizationName := "47 Degrees"
 
 organizationHomepage := Some(new URL("http://47deg.com"))
 
-scmInfo := Some(ScmInfo(url("https://github.com/47deg/github4s"), "https://github.com/47deg/github4s.git"))
+//scmInfo := Some(ScmInfo(url("https://github.com/47deg/github4s"), "https://github.com/47deg/github4s.git"))
 
 lazy val gpgFolder = sys.env.getOrElse("GPG_FOLDER", ".")
 

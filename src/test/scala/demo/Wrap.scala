@@ -1,13 +1,13 @@
 package demo
 
-import java.net.InetAddress
+//import java.net.InetAddress
 
-import akka.actor.ActorSystem
+//import akka.actor.ActorSystem
 import com.fortysevendeg.lambdatest._
-import com.persist.logging._
-import scala.concurrent.duration._
-import scala.concurrent.Await
-import scala.language.postfixOps
+//import com.persist.logging._
+//import scala.concurrent.duration._
+//import scala.concurrent.Await
+//import scala.language.postfixOps
 
 class Wrap extends LambdaTest {
 
@@ -24,6 +24,7 @@ class Wrap extends LambdaTest {
     })
   }
 
+  /*
   def logWrap(body: LambdaAct): LambdaAct = {
     SingleLambdaAct(t ⇒ {
       val system = ActorSystem("test")
@@ -41,6 +42,7 @@ class Wrap extends LambdaTest {
   case class LogTest() extends ClassLogging {
     def test = log.info("Log test")
   }
+  */
 
   // format: OFF
 
@@ -55,13 +57,15 @@ class Wrap extends LambdaTest {
       fileWrap("foobar.txt") { f =>
         assertEq(f.readLine, "zap", "line3")
       }
-    } +
+    }
+    /* +
     logWrap {
       test("LogTest") {
         LogTest().test
         assert(2 == 1 + 1, "log test")
       }
     }
+    */
   }
 }
 
