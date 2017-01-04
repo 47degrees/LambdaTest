@@ -1,5 +1,6 @@
 # LambdaTest
 
+[![Latest version](https://index.scala-lang.org/47deg/lambdatest/lambda-test/latest.svg)](https://index.scala-lang.org/47deg/lambdatest/lambda-test)
 [![Build Status](https://travis-ci.org/47deg/LambdaTest.svg?branch=master)](https://travis-ci.org/47deg/LambdaTest)
 [![codecov.io](http://codecov.io/github/47deg/LambdaTest/coverage.svg?branch=master)](http://codecov.io/github/47deg/LambdaTest?branch=master)
 [![Maven Central](https://img.shields.io/maven-central/v/com.fortysevendeg/lambda-test_2.12.svg)](https://maven-badges.herokuapp.com/maven-central/com.fortysevendeg/lambda-test_2.12)
@@ -28,14 +29,20 @@ LambdaTest has the following features.
 | wrap code              | wrappers        | before/after | before/after |
 | supports ScalaCheck    | yes             | yes          | yes          |
 | tagged/ignored tests   | yes             | yes          | yes          |
-| timed tests            | yes             | yes          | no           |
-| performance tests      | yes             | no           | no           |
+| timed tests            | yes Note 1      | yes          | no           |
+| performance tests      | yes Note 1      | no           | no           |
 | major dependencies     | only ScalaCheck | lots         | lots         |
+| actor message tests    | yes Note 2      | no           | no           |
+| log message tests      | yes Note 2      | no           | no           |
 
 LambdaTest has a simple clean fully functional/immutable API that makes it
 easy to define new kinds of assertions and compound testing forms (such as wrappers). 
 This simple API also provides the option of having code that generates 
 an entire test suite rather than having to write each test manually.
+
+Notes
+* Note 1. Via [LambdaTestTiming](https://github.com/47deg/LambdaTestTiming) extension.
+* Note 2. Via [LambdaTestAsync](https://github.com/47deg/LambdaTestAsync) extension.
 
 Wrappers offer many advantages over use of before and after.
 
@@ -70,7 +77,7 @@ demo for an example that used this conversion.
 
 Include LambdaTest jar
 
-    "com.fortysevendeg" % "lambda-test_2.12" % "1.2.0" % "test"
+    "com.fortysevendeg" % "lambda-test_2.12" % "1.3.0" % "test"
 
     "com.fortysevendeg" % "lambda-test_2.11" % "1.1.2" % "test"
    
@@ -162,13 +169,6 @@ There are options includeTags and excludeTags that can be set to select the subs
 By default, including the tag "ignore" on a label or test causes that action to be excluded.
 
 See the [Tag](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Tag.scala) demo.
-
-## Timing
-
-There are several actions that can be used to time code.
-Some are assertions that fail if the code runs too long.
-
-See the [Timing](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Timing.scala) demo.
 
 ## Parallel Execution
 
