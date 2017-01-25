@@ -1,0 +1,121 @@
+<html><head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><title>LambdaTest</title><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Functional Scala testing" /><meta name="author" content="docs" /><meta name="og:image" content="/lambda-test/img/poster.png" /><meta name="og:title" content="LambdaTest" /><meta name="og:site_name" content="LambdaTest" /><meta name="og:url" content="" /><meta name="og:type" content="website" /><meta name="og:description" content="Functional Scala testing" /><meta name="twitter:image" content="/lambda-test/img/poster.png" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:site" content="" /><link rel="icon" type="image/png" href="/lambda-test/img/favicon.png" /><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" /><link rel="stylesheet" href="/lambda-test/highlight/styles/rainbow.css" /><link rel="stylesheet" href="/lambda-test/css/style.css" /><link rel="stylesheet" href="/lambda-test/css/palette.css" /></head><body class="docs"><div id="wrapper"><div id="sidebar-wrapper"><ul id="sidebar" class="sidebar-nav"><li class="sidebar-brand"><a href="/lambda-test/" class="brand"><div class="brand-wrapper" style="background:url('/lambda-test/img/sidebar_brand.png') no-repeat"><span>LambdaTest</span></div></a></li> <li><a href="/lambda-test/index.html" class="">Introduction</a></li> <li><a href="/lambda-test/docs/compare.html" class="">Comparison</a></li> <li><a href="/lambda-test/docs/quick/html" class="">Quick Start</a></li> <li><a href="/lambda-test/docs/concepts.html" class="">Concepts</a></li> <li><a href="/lambda-test/docs/actions.html" class="">Actions</a></li> <li><a href="/lambda-test/docs/running.html" class="">Running</a></li> <li><a href="/lambda-test/docs/extensions.html" class="">Extensions</a></li> <li><a href="/lambda-test/docs/contributing.html" class="">Contributing</a></li></ul></div><div id="page-content-wrapper"><div class="nav"><div class="container-fluid"><div class="row"><div class="col-lg-12"><div class="action-menu pull-left clearfix"><a href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a></div><ul class="pull-right"><li class="hidden-xs"><a href="https://github.com/47deg/LambdaTest"><i class="fa fa-eye"></i><span>WATCH<span id="eyes" class="label label-default">--</span></span></a></li><li class="hidden-xs"><a href="https://github.com/47deg/LambdaTest"><i class="fa fa-star-o"></i><span>STARS<span id="stars" class="label label-default">--</span></span></a></li><li><a href="#" onclick="shareSiteTwitter('LambdaTest Functional Scala testing');"><i class="fa fa-twitter"></i></a></li><li><a href="#" onclick="shareSiteFacebook('LambdaTest Functional Scala testing');"><i class="fa fa-facebook"></i></a></li><li><a href="#" onclick="shareSiteGoogle();"><i class="fa fa-google-plus"></i></a></li></ul></div></div></div></div><div id="content" data-github-owner="47deg" data-github-repo="LambdaTest"><div class="content-wrapper"><section><h2 id="comparison-with-scalatest-and-specs2">Comparison with ScalaTest and Specs2</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>LambdaTest</th>
+      <th>ScalaTest</th>
+      <th>Specs2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>lines of code</td>
+      <td>~1K</td>
+      <td>~ 400K</td>
+      <td>~50K</td>
+    </tr>
+    <tr>
+      <td>written in</td>
+      <td>Scala</td>
+      <td>Scala/Java</td>
+      <td>Scala/Java</td>
+    </tr>
+    <tr>
+      <td>functional/immutable</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>easy to customize</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>easy to generate tests</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>wrap code</td>
+      <td>wrappers</td>
+      <td>before/after</td>
+      <td>before/after</td>
+    </tr>
+    <tr>
+      <td>supports ScalaCheck</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>tagged/ignored tests</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>timed tests</td>
+      <td>yes Note 1</td>
+      <td>yes</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>performance tests</td>
+      <td>yes Note 1</td>
+      <td>no</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>major dependencies</td>
+      <td>only ScalaCheck</td>
+      <td>lots</td>
+      <td>lots</td>
+    </tr>
+    <tr>
+      <td>actor message tests</td>
+      <td>yes Note 2</td>
+      <td>no</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td>log message tests</td>
+      <td>yes Note 2</td>
+      <td>no</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>LambdaTest has a simple clean fully functional/immutable API that makes it
+easy to define new kinds of assertions and compound testing forms (such as wrappers). 
+This simple API also provides the option of having code that generates 
+an entire test suite rather than having to write each test manually.</p>
+
+<p>Notes</p>
+<ul>
+  <li>Note 1. Via <a href="https://github.com/47deg/LambdaTestTiming">LambdaTestTiming</a> extension.</li>
+  <li>Note 2. Via <a href="https://github.com/47deg/LambdaTestAsync">LambdaTestAsync</a> extension.</li>
+</ul>
+
+<p>Wrappers offer many advantages over use of before and after.</p>
+
+<ul>
+  <li>Single function (wrapper) rather than 2 (before and after).</li>
+  <li>Does not require mutable state.</li>
+  <li>Can catch exceptions.</li>
+  <li>Can hide state needed both before and after.</li>
+  <li>Can be applied at any level.</li>
+</ul>
+
+<p>All these features are discussed in this documentation with links to demo code that illustrate the
+features.</p>
+</section></div></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script><script src="/lambda-test/highlight/highlight.pack.js"></script><script>hljs.configure({
+languages:['scala','java','bash']
+});
+hljs.initHighlighting();
+             </script><script src="/lambda-test/js/main.js"></script></body></html>

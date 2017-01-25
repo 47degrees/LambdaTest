@@ -1,0 +1,469 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>lambdatest - com.fortysevendeg.lambdatest</title>
+          <meta name="description" content="lambdatest - com.fortysevendeg.lambdatest" />
+          <meta name="keywords" content="lambdatest com.fortysevendeg.lambdatest" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'com.fortysevendeg.lambdatest.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="com">com</a>.<a href="../package.html" class="extype" name="com.fortysevendeg">fortysevendeg</a></p>
+        <h1>lambdatest</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">lambdatest</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Actions used in tests.
+</p></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a>, <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Any" class="extype" target="_top">Any</a></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="com.fortysevendeg.lambdatest"><span>lambdatest</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="com.fortysevendeg.lambdatest.HoldLambdaReporter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HoldLambdaReporterextendsLambdaReporterwithProductwithSerializable"></a>
+      <a id="HoldLambdaReporter:HoldLambdaReporter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="HoldLambdaReporter.html"><span class="name">HoldLambdaReporter</span></a><span class="result"> extends <a href="LambdaReporter.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaReporter">LambdaReporter</a> with <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A reporter that holds all messages  to reported until
+the flush method is called.</p>
+    </li><li name="com.fortysevendeg.lambdatest.LambdaAct" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LambdaActextendsProductwithSerializable"></a>
+      <a id="LambdaAct:LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="LambdaAct.html"><span class="name">LambdaAct</span></a><span class="params">(<span name="acts">acts: <span class="extype" name="scala.List">List</span>[(<a href="LambdaState.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaState">LambdaState</a>) ⇒ <a href="LambdaState.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaState">LambdaState</a>]</span>)</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A sequence of tests.</p>
+    </li><li name="com.fortysevendeg.lambdatest.LambdaReporter" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LambdaReporterextendsAnyRef"></a>
+      <a id="LambdaReporter:LambdaReporter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LambdaReporter.html"><span class="name">LambdaReporter</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">The common trait for all reporters.</p>
+    </li><li name="com.fortysevendeg.lambdatest.LambdaState" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LambdaStateextendsProductwithSerializable"></a>
+      <a id="LambdaState:LambdaState"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="LambdaState.html"><span class="name">LambdaState</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">The immutable state object that holds all testing state.</p>
+    </li><li name="com.fortysevendeg.lambdatest.LambdaTest" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LambdaTestextendsLambdaTestRun"></a>
+      <a id="LambdaTest:LambdaTest"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LambdaTest.html"><span class="name">LambdaTest</span></a><span class="result"> extends <a href="LambdaTestRun.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaTestRun">LambdaTestRun</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Each class (to be run by either SBT test on the run method)
+that contains tests should extend this trait.</p>
+    </li><li name="com.fortysevendeg.lambdatest.LambdaTestRun" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LambdaTestRunextendsAnyRef"></a>
+      <a id="LambdaTestRun:LambdaTestRun"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LambdaTestRun.html"><span class="name">LambdaTestRun</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Each class (to be run by the run method but not SBT test)
+that contains tests should extend this trait.</p>
+    </li><li name="com.fortysevendeg.lambdatest.StdoutLambdaReporter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="StdoutLambdaReporterextendsLambdaReporterwithProductwithSerializable"></a>
+      <a id="StdoutLambdaReporter:StdoutLambdaReporter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="StdoutLambdaReporter.html"><span class="name">StdoutLambdaReporter</span></a><span class="result"> extends <a href="LambdaReporter.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaReporter">LambdaReporter</a> with <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A reporter that sends test results to StdOut.</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="com.fortysevendeg.lambdatest.package#GroupLambdaAct" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="GroupLambdaAct(x:Seq[com.fortysevendeg.lambdatest.LambdaAct]):com.fortysevendeg.lambdatest.LambdaAct"></a>
+      <a id="GroupLambdaAct(Seq[LambdaAct]):LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">GroupLambdaAct</span><span class="params">(<span name="x">x: <span class="extype" name="scala.Seq">Seq</span>[<a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a>]</span>)</span><span class="result">: <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Converts a Seq[LambdaAct] to a LambdaAct.</p><div class="fullcomment"><div class="comment cmt"><p>Converts a Seq[LambdaAct] to a LambdaAct.
+</p></div><dl class="paramcmts block"><dt class="param">x</dt><dd class="cmt"><p>the sequence.</p></dd><dt>returns</dt><dd class="cmt"><p>the LambdaAct.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.HoldLambdaReporter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HoldLambdaReporter"></a>
+      <a id="HoldLambdaReporter:HoldLambdaReporter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="HoldLambdaReporter$.html"><span class="name">HoldLambdaReporter</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">The companion object for the hold reporter.</p>
+    </li><li name="com.fortysevendeg.lambdatest.LambdaOptions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LambdaOptions"></a>
+      <a id="LambdaOptions:LambdaOptions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="LambdaOptions$.html"><span class="name">LambdaOptions</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Configuration options.</p>
+    </li><li name="com.fortysevendeg.lambdatest.LambdaState" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LambdaState"></a>
+      <a id="LambdaState:LambdaState"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="LambdaState$.html"><span class="name">LambdaState</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object for LambdaState class.</p>
+    </li><li name="com.fortysevendeg.lambdatest.package#SingleLambdaAct" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SingleLambdaAct(act:com.fortysevendeg.lambdatest.LambdaState=&gt;com.fortysevendeg.lambdatest.LambdaState):com.fortysevendeg.lambdatest.LambdaAct"></a>
+      <a id="SingleLambdaAct((LambdaState)⇒LambdaState):LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SingleLambdaAct</span><span class="params">(<span name="act">act: (<a href="LambdaState.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaState">LambdaState</a>) ⇒ <a href="LambdaState.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaState">LambdaState</a></span>)</span><span class="result">: <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">A convenience abbreviation for a LambdaAct that has only a single transform.</p><div class="fullcomment"><div class="comment cmt"><p>A convenience abbreviation for a LambdaAct that has only a single transform.
+</p></div><dl class="paramcmts block"><dt class="param">act</dt><dd class="cmt"><p>a state transformation.</p></dd><dt>returns</dt><dd class="cmt"><p>a LambdaAct the contains only the single act state tranformation.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.StdoutLambdaReporter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="StdoutLambdaReporter"></a>
+      <a id="StdoutLambdaReporter:StdoutLambdaReporter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="StdoutLambdaReporter$.html"><span class="name">StdoutLambdaReporter</span></a><span class="result"> extends <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object for the StdOut reporter.</p>
+    </li><li name="com.fortysevendeg.lambdatest.package#assert" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="assert(test:=&gt;Boolean,info:=&gt;String,showOk:Boolean,pos:String):com.fortysevendeg.lambdatest.LambdaAct"></a>
+      <a id="assert(⇒Boolean,⇒String,Boolean,String):LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">assert</span><span class="params">(<span name="test">test: ⇒ <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Boolean" class="extype" target="_top">Boolean</a></span>, <span name="info">info: ⇒ <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="showOk">showOk: <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Boolean" class="extype" target="_top">Boolean</a> = <span class="symbol">true</span></span>, <span name="pos">pos: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol"><span class="name"><a href="#srcPos(offset:Int):String">srcPos()</a></span></span></span>)</span><span class="result">: <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">An assertion action for a single boolean.</p><div class="fullcomment"><div class="comment cmt"><p>An assertion action for a single boolean.
+</p></div><dl class="paramcmts block"><dt class="param">test</dt><dd class="cmt"><p>the boolean.</p></dd><dt class="param">info</dt><dd class="cmt"><p>a string to be reported.</p></dd><dt class="param">showOk</dt><dd class="cmt"><p>an option that if false supresses the output for success.</p></dd><dt class="param">pos</dt><dd class="cmt"><p>the source position (usually defaulted).</p></dd><dt>returns</dt><dd class="cmt"><p>the LambdaAct.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.package#assertEq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="assertEq[T](a:=&gt;T,b:=&gt;T,info:=&gt;String,showOk:Boolean,pos:String):com.fortysevendeg.lambdatest.LambdaAct"></a>
+      <a id="assertEq[T](⇒T,⇒T,⇒String,Boolean,String):LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">assertEq</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="a">a: ⇒ <span class="extype" name="com.fortysevendeg.lambdatest.assertEq.T">T</span></span>, <span name="b">b: ⇒ <span class="extype" name="com.fortysevendeg.lambdatest.assertEq.T">T</span></span>, <span name="info">info: ⇒ <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="showOk">showOk: <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Boolean" class="extype" target="_top">Boolean</a> = <span class="symbol">true</span></span>, <span name="pos">pos: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol"><span class="name"><a href="#srcPos(offset:Int):String">srcPos()</a></span></span></span>)</span><span class="result">: <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">An assertion action that compares two values of the same type.</p><div class="fullcomment"><div class="comment cmt"><p>An assertion action that compares two values of the same type.
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>the type of the values to be compared.</p></dd><dt class="param">a</dt><dd class="cmt"><p>the first value.</p></dd><dt class="param">b</dt><dd class="cmt"><p>the second value.</p></dd><dt class="param">info</dt><dd class="cmt"><p>a string to be reported.</p></dd><dt class="param">showOk</dt><dd class="cmt"><p>an option that if false supresses the output for success.</p></dd><dt class="param">pos</dt><dd class="cmt"><p>the source position (usually defaulted).</p></dd><dt>returns</dt><dd class="cmt"><p>the LambdaAct.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.package#assertEx" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="assertEx(test:=&gt;Unit,info:=&gt;String,check:Throwable=&gt;Option[String],showOk:Boolean,pos:String):com.fortysevendeg.lambdatest.LambdaAct"></a>
+      <a id="assertEx(⇒Unit,⇒String,(Throwable)⇒Option[String],Boolean,String):LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">assertEx</span><span class="params">(<span name="test">test: ⇒ <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>, <span name="info">info: ⇒ <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="check">check: (<span class="extype" name="scala.Throwable">Throwable</span>) ⇒ <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Option" class="extype" target="_top">Option</a>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">(ex: Throwable) ⇒ None</span></span>, <span name="showOk">showOk: <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Boolean" class="extype" target="_top">Boolean</a> = <span class="symbol">true</span></span>, <span name="pos">pos: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol"><span class="name"><a href="#srcPos(offset:Int):String">srcPos()</a></span></span></span>)</span><span class="result">: <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">An assertion that expects an exception to be raised.</p><div class="fullcomment"><div class="comment cmt"><p>An assertion that expects an exception to be raised.
+</p></div><dl class="paramcmts block"><dt class="param">test</dt><dd class="cmt"><p>the code that should raise the exception.</p></dd><dt class="param">info</dt><dd class="cmt"><p>a string to be reported.</p></dd><dt class="param">check</dt><dd class="cmt"><p>a function that further checks the exception. It returns None if the the check passes and
+              Some(msg) if the check fails (where msg desribes the failure).</p></dd><dt class="param">showOk</dt><dd class="cmt"><p>an option that if false supresses the output for success.</p></dd><dt class="param">pos</dt><dd class="cmt"><p>the source position (usually defaulted).</p></dd><dt>returns</dt><dd class="cmt"><p>the LambdaAct.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.package#assertSC" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="assertSC(params:org.scalacheck.Test.Parameters,showOk:Boolean,pos:String)(prop:org.scalacheck.Prop):com.fortysevendeg.lambdatest.LambdaAct"></a>
+      <a id="assertSC(Parameters,Boolean,String)(Prop):LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">assertSC</span><span class="params">(<span name="params">params: <span class="extype" name="org.scalacheck.Test.Parameters">Parameters</span> = <span class="symbol">Test.Parameters.default</span></span>, <span name="showOk">showOk: <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Boolean" class="extype" target="_top">Boolean</a> = <span class="symbol">true</span></span>, <span name="pos">pos: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol"><span class="name"><a href="#srcPos(offset:Int):String">srcPos()</a></span></span></span>)</span><span class="params">(<span name="prop">prop: <span class="extype" name="org.scalacheck.Prop">Prop</span></span>)</span><span class="result">: <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">An assertion that checks a ScalaCheck property.</p><div class="fullcomment"><div class="comment cmt"><p>An assertion that checks a ScalaCheck property.
+</p></div><dl class="paramcmts block"><dt class="param">params</dt><dd class="cmt"></dd><dt class="param">showOk</dt><dd class="cmt"><p>an option that if false supresees the output for success.</p></dd><dt class="param">pos</dt><dd class="cmt"><p>the source position (usually defaulted).</p></dd><dt class="param">prop</dt><dd class="cmt"><p>the ScalaCheck property to be checked.</p></dd><dt>returns</dt><dd class="cmt"><p>the LambdaAct.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.package#changeOptions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="changeOptions(change:com.fortysevendeg.lambdatest.LambdaOptions.LambdaOptions=&gt;com.fortysevendeg.lambdatest.LambdaOptions.LambdaOptions,pos:String)(body:=&gt;com.fortysevendeg.lambdatest.LambdaAct):com.fortysevendeg.lambdatest.LambdaAct"></a>
+      <a id="changeOptions((LambdaOptions)⇒LambdaOptions,String)(⇒LambdaAct):LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">changeOptions</span><span class="params">(<span name="change">change: (<a href="LambdaOptions$$LambdaOptions.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaOptions.LambdaOptions">LambdaOptions</a>) ⇒ <a href="LambdaOptions$$LambdaOptions.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaOptions.LambdaOptions">LambdaOptions</a></span>, <span name="pos">pos: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol"><span class="name"><a href="#srcPos(offset:Int):String">srcPos()</a></span></span></span>)</span><span class="params">(<span name="body">body: ⇒ <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>)</span><span class="result">: <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Changes the options within its body.</p><div class="fullcomment"><div class="comment cmt"><p>Changes the options within its body.
+</p></div><dl class="paramcmts block"><dt class="param">change</dt><dd class="cmt"><p>a function to change the options.</p></dd><dt class="param">pos</dt><dd class="cmt"><p>the source position (usually defaulted).</p></dd><dt class="param">body</dt><dd class="cmt"><p>the actions inside.</p></dd><dt>returns</dt><dd class="cmt"><p>the LambdaAct.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.package#exec" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exec[T](body:=&gt;Unit,pos:String):com.fortysevendeg.lambdatest.LambdaAct"></a>
+      <a id="exec[T](⇒Unit,String):LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">exec</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="body">body: ⇒ <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>, <span name="pos">pos: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol"><span class="name"><a href="#srcPos(offset:Int):String">srcPos()</a></span></span></span>)</span><span class="result">: <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">An action that executed the code in its body
+</p><div class="fullcomment"><div class="comment cmt"><p>An action that executed the code in its body
+</p></div><dl class="paramcmts block"><dt class="param">body</dt><dd class="cmt"><p>the Scala code to be executed.</p></dd><dt class="param">pos</dt><dd class="cmt"><p>the source position (usually defaulted).</p></dd><dt>returns</dt><dd class="cmt"><p>the LambdaAct.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.package#label" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="label(name:String,parallel:Boolean,tags:Set[String],pos:String)(body:=&gt;com.fortysevendeg.lambdatest.LambdaAct):com.fortysevendeg.lambdatest.LambdaAct"></a>
+      <a id="label(String,Boolean,Set[String],String)(⇒LambdaAct):LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">label</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="parallel">parallel: <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Boolean" class="extype" target="_top">Boolean</a> = <span class="symbol">false</span></span>, <span name="tags">tags: <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Set.empty[String]</span></span>, <span name="pos">pos: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol"><span class="name"><a href="#srcPos(offset:Int):String">srcPos()</a></span></span></span>)</span><span class="params">(<span name="body">body: ⇒ <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>)</span><span class="result">: <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">A compund action that defines a labeled block of code.</p><div class="fullcomment"><div class="comment cmt"><p>A compund action that defines a labeled block of code.
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the name of the label.  Default, no label line output and body is not nested.</p></dd><dt class="param">parallel</dt><dd class="cmt"><p>if true, run top level actions in body in parallel (default false).</p></dd><dt class="param">tags</dt><dd class="cmt"><p>tags for this label (default empty).</p></dd><dt class="param">pos</dt><dd class="cmt"><p>the source position (usually defaulted).</p></dd><dt class="param">body</dt><dd class="cmt"><p>the actions inside the label.</p></dd><dt>returns</dt><dd class="cmt"><p>the LambdaAct.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.package#nest" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="nest(body:=&gt;com.fortysevendeg.lambdatest.LambdaAct,pos:String):com.fortysevendeg.lambdatest.LambdaAct"></a>
+      <a id="nest(⇒LambdaAct,String):LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nest</span><span class="params">(<span name="body">body: ⇒ <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>, <span name="pos">pos: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol"><span class="name"><a href="#srcPos(offset:Int):String">srcPos()</a></span></span></span>)</span><span class="result">: <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">An action for nesting other actions.</p><div class="fullcomment"><div class="comment cmt"><p>An action for nesting other actions.
+Nest does not increase indentation of the
+output if its body.
+Nest is useful for functional testing.
+</p></div><dl class="paramcmts block"><dt class="param">body</dt><dd class="cmt"><p>the nested actions.</p></dd><dt class="param">pos</dt><dd class="cmt"><p>the source position (usually defaulted).</p></dd><dt>returns</dt><dd class="cmt"><p>the LambdaAct.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.package#run" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="run(name:String,body:=&gt;com.fortysevendeg.lambdatest.LambdaTestRun,parallel:Boolean,reporter:com.fortysevendeg.lambdatest.LambdaReporter,change:com.fortysevendeg.lambdatest.LambdaOptions.LambdaOptions=&gt;com.fortysevendeg.lambdatest.LambdaOptions.LambdaOptions):Unit"></a>
+      <a id="run(String,⇒LambdaTestRun,Boolean,LambdaReporter,(LambdaOptions)⇒LambdaOptions):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">run</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="body">body: ⇒ <a href="LambdaTestRun.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaTestRun">LambdaTestRun</a></span>, <span name="parallel">parallel: <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Boolean" class="extype" target="_top">Boolean</a> = <span class="symbol">false</span></span>, <span name="reporter">reporter: <a href="LambdaReporter.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaReporter">LambdaReporter</a> = <span class="symbol"><span class="name"><a href="StdoutLambdaReporter$.html">StdoutLambdaReporter()</a></span></span></span>, <span name="change">change: (<a href="LambdaOptions$$LambdaOptions.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaOptions.LambdaOptions">LambdaOptions</a>) ⇒ <a href="LambdaOptions$$LambdaOptions.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaOptions.LambdaOptions">LambdaOptions</a> = <span class="symbol">(x: LambdaOptions) ⇒ x</span></span>)</span><span class="result">: <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Unit" class="extype" target="_top">Unit</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This command is used to directly run a test.</p><div class="fullcomment"><div class="comment cmt"><p>This command is used to directly run a test.
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the name for the test.</p></dd><dt class="param">body</dt><dd class="cmt"><p>the test to be run.</p></dd><dt class="param">parallel</dt><dd class="cmt"><p>an option to run top level actions in parallel (default false).</p></dd><dt class="param">reporter</dt><dd class="cmt"><p>an option to specify an alternate reporter.</p></dd><dt class="param">change</dt><dd class="cmt"><p>an option to change the options for the run.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.package#srcPos" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="srcPos(offset:Int):String"></a>
+      <a id="srcPos(Int):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">srcPos</span><span class="params">(<span name="offset">offset: <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Int" class="extype" target="_top">Int</a> = <span class="symbol">0</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Get a source position string.</p><div class="fullcomment"><div class="comment cmt"><p>Get a source position string.
+</p></div><dl class="paramcmts block"><dt class="param">offset</dt><dd class="cmt"><p>stack offset (default 0).</p></dd><dt>returns</dt><dd class="cmt"><p>a string representing the source position of the caller.
+</p></dd></dl></div>
+    </li><li name="com.fortysevendeg.lambdatest.package#test" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="test(name:String,parallel:Boolean,tags:Set[String],pos:String)(body:=&gt;com.fortysevendeg.lambdatest.LambdaAct):com.fortysevendeg.lambdatest.LambdaAct"></a>
+      <a id="test(String,Boolean,Set[String],String)(⇒LambdaAct):LambdaAct"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">test</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="parallel">parallel: <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Boolean" class="extype" target="_top">Boolean</a> = <span class="symbol">false</span></span>, <span name="tags">tags: <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Set.empty[String]</span></span>, <span name="pos">pos: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol"><span class="name"><a href="#srcPos(offset:Int):String">srcPos()</a></span></span></span>)</span><span class="params">(<span name="body">body: ⇒ <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>)</span><span class="result">: <a href="LambdaAct.html" class="extype" name="com.fortysevendeg.lambdatest.LambdaAct">LambdaAct</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">A compund action that defines a single test.</p><div class="fullcomment"><div class="comment cmt"><p>A compund action that defines a single test.
+</p></div><dl class="paramcmts block"><dt class="param">name</dt><dd class="cmt"><p>the name of the test.</p></dd><dt class="param">parallel</dt><dd class="cmt"><p>if true, run top level actions in body in parallel (default false).</p></dd><dt class="param">tags</dt><dd class="cmt"><p>tags for this test (default empty).</p></dd><dt class="param">pos</dt><dd class="cmt"><p>the source position (usually defaulted).</p></dd><dt class="param">body</dt><dd class="cmt"><p>the actions inside the test.</p></dd><dt>returns</dt><dd class="cmt"><p>the LambdaAct.
+</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.AnyRef" class="extype" target="_top">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <a href="http://www.scala-lang.org/api/2.10.6/index.html#scala.Any" class="extype" target="_top">Any</a></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../lib/template.js"></script>
+    </body>
+      </html>
