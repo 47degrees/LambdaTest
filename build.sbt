@@ -1,6 +1,7 @@
 import scalariform.formatter.preferences._
 import com.typesafe.sbt.SbtScalariform
 import com.typesafe.sbt.SbtScalariform.ScalariformKeys
+import UnidocKeys._
 
 name := "lambda-test"
 
@@ -35,10 +36,10 @@ ScalariformKeys.preferences := ScalariformKeys.preferences.value
 .setPreference(SpaceBeforeColon, false)
 .setPreference(SpaceInsideParentheses, false)
 .setPreference(SpaceInsideBrackets, false)
-.setPreference(SpacesAroundMultiImports,true)
+.setPreference(SpacesAroundMultiImports, true)
 .setPreference(PreserveSpaceBeforeArguments, false)
-.setPreference(CompactStringConcatenation,false)
-.setPreference(DanglingCloseParenthesis,Force)
+.setPreference(CompactStringConcatenation, false)
+.setPreference(DanglingCloseParenthesis, Force)
 .setPreference(CompactControlReadability, false)
 .setPreference(AlignParameters, false)
 .setPreference(AlignArguments, true)
@@ -53,7 +54,9 @@ ScalariformKeys.preferences := ScalariformKeys.preferences.value
 lazy val publishSnapshot = taskKey[Unit]("Publish only if the version is a SNAPSHOT")
 
 publishSnapshot := Def.taskDyn {
-  if (isSnapshot.value) Def.task { PgpKeys.publishSigned.value }
+  if (isSnapshot.value) Def.task {
+    PgpKeys.publishSigned.value
+  }
   else Def.task(println("Actual version is not a Snapshot. Skipping publish."))
 }.value
 
@@ -69,7 +72,43 @@ organizationName := "47 Degrees"
 
 organizationHomepage := Some(new URL("http://47deg.com"))
 
-//scmInfo := Some(ScmInfo(url("https://github.com/47deg/github4s"), "https://github.com/47deg/github4s.git"))
+lazy val micrositeSettings = Seq(
+  micrositeName := "LambdaTest",
+  micrositeDescription := "Functional Scala testing",
+  micrositeBaseUrl := "LambdaTest",
+  micrositeDocumentationUrl := "/LambdaTest/index.html",
+  micrositeGithubOwner := "47deg",
+  micrositeGithubRepo := "LambdaTest",
+  micrositeHighlightTheme := "rainbow",
+  includeFilter in makeSite := "*.html" | "*.css" | "*.png" | "*.jpg" | "*.gif" | "*.js" | "*.swf" | "*.md",
+  micrositePalette := Map(
+    "brand-primary" -> "#01C2C2",
+    "brand-secondary" -> "#142236",
+    "brand-tertiary" -> "#202D40",
+    "gray-dark" -> "#383D44",
+    "gray" -> "#646D7B",
+    "gray-light" -> "#E6E7EC",
+    "gray-lighter" -> "#F4F5F9",
+    "white-color" -> "#E6E7EC"),
+     //siteSubdirName in ScalaUnidoc := "api",
+     //unidocProjectFilter in (ScalaUnidoc, unidoc) := inProjects(lambdatest),
+     git.remoteRepo := "git@github.com:47deg/LambdaTest.git",
+     autoAPIMappings := true,
+     docsMappingsAPIDir := "api",
+     addMappingsToSiteDir(mappings in (ScalaUnidoc,packageDoc), docsMappingsAPIDir)
+)
+
+lazy val docsMappingsAPIDir = settingKey[String](
+  "Name of subdirectory in site target directory for api docs")
+
+lazy val docs = (project in file("docs")).
+settings(micrositeSettings: _*).
+settings(unidocSettings).
+settings(
+  name := "docs",
+  description := "LambdaTest docs"
+)
+.enablePlugins(MicrositesPlugin)
 
 lazy val gpgFolder = sys.env.getOrElse("GPG_FOLDER", ".")
 
