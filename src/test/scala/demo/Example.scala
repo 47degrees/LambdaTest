@@ -19,8 +19,6 @@ class Example extends LambdaTest {
   }
 }
 
-object Example {
-  def main(args: Array[String]): Unit = {
-    run("example", new Example)
-  }
+object Example extends App {
+  run("example", new Example)
 }

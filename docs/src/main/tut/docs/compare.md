@@ -7,7 +7,8 @@
 
 | Feature                | LambdaTest      | ScalaTest    | Specs2       |
 | ---------------------- | --------------- | ------------ | ------------ |
-| lines of code          |  ~1K            | ~ 400K       |  ~50K        |
+| lines of code          | ~1K             | ~400K        | ~50K         |
+| jar size               | 85KB            | 7MB          | 6MB          |
 | written in             | Scala           | Scala/Java   | Scala/Java   |
 | functional/immutable   | yes             | no           | no           | 
 | easy to customize      | yes             | no           | no           |
@@ -20,6 +21,7 @@
 | major dependencies     | only ScalaCheck | lots         | lots         |
 | actor message tests    | yes Note 2      | no           | no           |
 | log message tests      | yes Note 2      | no           | no           |
+| capture test output    | yes Note 3      | yes          | yes          |
 
 
 LambdaTest has a simple clean fully functional/immutable API that makes it
@@ -30,6 +32,8 @@ an entire test suite rather than having to write each test manually.
 Notes
 * Note 1. Via [LambdaTestTiming](https://github.com/47deg/LambdaTestTiming) extension.
 * Note 2. Via [LambdaTestAsync](https://github.com/47deg/LambdaTestAsync) extension.
+* Note 3. Via [LambdaTestCapture](https://github.com/47deg/LambdaTestCapture) extension. 
+Captures test results as in-memory data structure or Json to file or log. 
 
 Wrappers offer many advantages over use of before and after.
 

@@ -18,4 +18,6 @@ LambdaTest is designed to be easily extensible.
 
 * The [LambdaTestTiming](https://github.com/47deg/LambdaTestTiming) extension provides actions testing execution times.
 * The [LambdaTestAsync](https://github.com/47deg/LambdaTestAsync) extension provides actions for testing Akka actors and logs.
+* The [LambdaTestCapture](https://github.com/47deg/LambdaTestCapture) extension
+captures test results as in-memory data structure or Json to file or log. 
 

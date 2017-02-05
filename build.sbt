@@ -1,7 +1,6 @@
 import scalariform.formatter.preferences._
 import com.typesafe.sbt.SbtScalariform
 import com.typesafe.sbt.SbtScalariform.ScalariformKeys
-import UnidocKeys._
 
 name := "lambda-test"
 
@@ -101,13 +100,19 @@ lazy val micrositeSettings = Seq(
 lazy val docsMappingsAPIDir = settingKey[String](
   "Name of subdirectory in site target directory for api docs")
 
-lazy val docs = (project in file("docs")).
-settings(micrositeSettings: _*).
-settings(unidocSettings).
-settings(
+lazy val noPublishSettings: Seq[Setting[_]] = Seq(
+  publish := {},
+  publishLocal := {}
+)
+
+lazy val docs = (project in file("docs"))
+.settings(micrositeSettings: _*)
+.settings(unidocSettings)
+.settings(
   name := "docs",
   description := "LambdaTest docs"
 )
+.settings(noPublishSettings)
 .enablePlugins(MicrositesPlugin)
 
 lazy val gpgFolder = sys.env.getOrElse("GPG_FOLDER", ".")
