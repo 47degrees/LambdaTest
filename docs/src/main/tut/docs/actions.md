@@ -29,8 +29,8 @@ Compound actions contain other actions within themselves.
 * **`label`**. Introduced a labeled block of code. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo.
 * **`test`**. Defines a named test. See the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/.scala) demo.
 * **`changeOptions`**. Used to change options within its body. See the [FailOnly](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/coverage/FailOnly.scala) test.
-* **`timer`**. Reports the execution time of its body. See the [Timing](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Timing.scala) demo.
-* **`assertTiming`**. Reports the execution time of its body. Fails if a max time is exceeded. See the [Timing](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Timing.scala) demo.
+* **`timer`**. Reports the execution time of its body. See the [Timing](https://github.com/47deg/LambdaTestTiming/blob/master/src/test/scala/demo/Timing.scala) demo.
+* **`assertTiming`**. Reports the execution time of its body. Fails if a max time is exceeded. See the [Timing](https://github.com/47deg/LambdaTestTiming/blob/master/src/test/scala/demo/Timing.scala) demo.
 * **`nest`**. Used to nest declarations in immutable tests. See the [Immutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Immutable.scala) demo.
 
 ### Assertion Nesting Rule
