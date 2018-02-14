@@ -11,9 +11,9 @@ Include LambdaTest jar
 
     "com.fortysevendeg" % "lambda-test_2.11" % "1.1.2" % "test"
    
-Each test file should  
+Each test file should include 
  
-    include com.fortyseven.lambdatest._
+    import com.fortyseven.lambdatest._
 
 Each test file class should extend the `LambdaTest` trait.
 
