@@ -26,5 +26,6 @@ class Except extends LambdaTest {
 }
 
 object Except extends App {
-  run("exceptions", new Example)
+  run("exceptions", new Except)
 }
+q

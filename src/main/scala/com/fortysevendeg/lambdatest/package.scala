@@ -98,11 +98,11 @@ package object lambdatest {
     SingleLambdaAct(t ⇒ try {
       val a1 = a
       val info0 = if (info == "") "" else s" ($info)"
-      val info1 = s"[$a1] $info"
       if (a1 == b) {
+        val info1 = s"[$a1]$info0"
         if (showOk) t.success(info1, pos) else t
       } else {
-        t.fail(s"[$a1 != $b] $info", pos)
+        t.fail(s"[$a1 != $b]$info0", pos)
       }
     } catch {
       case ex: Throwable ⇒

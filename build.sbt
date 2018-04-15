@@ -6,15 +6,15 @@ name := "lambda-test"
 
 organization := "com.fortysevendeg"
 
-version := "1.3.0"
+version := "1.3.1"
 
-scalaVersion := "2.12.0"
+scalaVersion := "2.12.5"
 
 scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
 
 viewSettings
 
-testFrameworks += new TestFramework("com.fortysevendeg.lambdatest.sbtinterface.LambdaFramework")
+testFrameworks += new TestFramework("com.qfortysevendeg.lambdatest.sbtinterface.LambdaFramework")
 
 fork in Test := true
 

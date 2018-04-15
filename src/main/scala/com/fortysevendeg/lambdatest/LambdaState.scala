@@ -28,6 +28,7 @@ object LambdaState {
   * @param sawFail
   * @param inTest
   * @param startTime
+  * @param options the current options.
   */
 case class LambdaState private[lambdatest] (
   val reporter: LambdaReporter = StdoutLambdaReporter(),

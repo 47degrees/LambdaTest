@@ -7,7 +7,7 @@
 
 Include LambdaTest jar
 
-    "com.fortysevendeg" % "lambda-test_2.12" % "1.3.0" % "test"
+    "com.fortysevendeg" % "lambda-test_2.12" % "1.3.1" % "test"
 
     "com.fortysevendeg" % "lambda-test_2.11" % "1.1.2" % "test"
    
