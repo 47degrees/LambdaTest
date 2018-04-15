@@ -14,7 +14,7 @@ scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature")
 
 viewSettings
 
-testFrameworks += new TestFramework("com.qfortysevendeg.lambdatest.sbtinterface.LambdaFramework")
+testFrameworks += new TestFramework("com.fortysevendeg.lambdatest.sbtinterface.LambdaFramework")
 
 fork in Test := true
 
