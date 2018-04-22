@@ -4,7 +4,7 @@ import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 
 name := "lambda-test"
 
-organization := "com.fortysevendeg"
+organization := "com.47deg"
 
 version := "1.3.1"
 
