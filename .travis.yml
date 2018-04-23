@@ -1,15 +1,15 @@
 language: scala
 scala:
-  - 2.12.0
+  - 2.12.5
 
 jdk:
   - oraclejdk8
 
 # Demo tests are designed to fail; so only test compile
-script: sbt test:compile
+script: sbt lambda-test/test:compile
 
 after_success:
-   - (sbt clean coverage "test:runMain demo.All" "test:runMain coverage.All" test || true)
+   - (sbt clean coverage "lambda-test/test:runMain demo.All" "lambda-test/test:runMain coverage.All" test || true)
    - sbt coverageReport
    - bash <(curl -s https://codecov.io/bash)
 
