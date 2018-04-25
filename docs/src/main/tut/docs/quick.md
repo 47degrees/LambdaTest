@@ -22,5 +22,5 @@ If you want to run tests via SBT then the `build.sbt` file should specify
 
     testFrameworks += new TestFramework("com.fortysevendeg.lambdatest.sbtinterface.LambdaFramework")
    
-To see a simple example look at the [Example](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Example.scala) demo.
+To see a simple example look at the [Example](https://github.com/47deg/LambdaTest/blob/master/lambdatest/src/test/scala/demo/Example.scala) demo.
  

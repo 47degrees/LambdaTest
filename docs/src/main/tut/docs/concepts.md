@@ -15,20 +15,20 @@ LambdaTest has fully functional/immutable testing state and has a rich set of fe
 
 Actions are created using functions that create objects of type `LambdaAct`. These functions are also informally refered to as actions.
 
-Multiple actions can also be specified as a list of actions. This is done via an implicit conversion from `Seq[LambdaAct]` to `LambdaAct`. See the [Generate](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Generate.scala) 
+Multiple actions can also be specified as a list of actions. This is done via an implicit conversion from `Seq[LambdaAct]` to `LambdaAct`. See the [Generate](https://github.com/47deg/LambdaTest/blob/master/lambdatest/src/test/scala/demo/Generate.scala)
 demo for an example that used this conversion.
 
 ### Options
 
-Description of and defaults for options in [src/main/resources/reference.conf](https://github.com/47deg/LambdaTest/blob/master/src/main/resources/reference.conf).
-The `changeOptions`action is used to change options within its body. See the [FailOnly](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/coverage/FailOnly.scala) test.
+Description of and defaults for options in [src/main/resources/reference.conf](https://github.com/47deg/LambdaTest/blob/master/lambdatest/src/main/resources/reference.conf).
+The `changeOptions`action is used to change options within its body. See the [FailOnly](https://github.com/47deg/LambdaTest/blob/master/lambdatest/src/test/scala/coverage/FailOnly.scala) test.
 
 
 ### Immutablility and Side Effects
 
 The testing system itself contains no mutable data. It does however have one kind of side effect: tests results are output. It would have been more pure to move the output entirely after the core functionality, but it is nice to see test output incrementally as tests are run so a little purity is sacrificed.
 
-Although LambdaTest is ideal for testing pure functional code, it can also be used to test code with mutable state and side effects. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala) demo.
+Although LambdaTest is ideal for testing pure functional code, it can also be used to test code with mutable state and side effects. See the [Mutable](https://github.com/47deg/LambdaTest/blob/master/lambdatest/src/test/scala/demo/Mutable.scala) demo.
 
 ### Exceptions
 
@@ -43,7 +43,7 @@ There are options includeTags and excludeTags that can be set to select the subs
 
 By default, including the tag "ignore" on a label or test causes that action to be excluded.
 
-See the [Tag](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Tag.scala) demo.
+See the [Tag](https://github.com/47deg/LambdaTest/blob/master/lambdatest/src/test/scala/demo/Tag.scala) demo.
 
 ### Parallel Execution
 
@@ -53,7 +53,7 @@ By default those actions directly inside are run sequentially in order.
 
 If parallel is true, actions directly inside are run in parallel. Note that the output still occurs in the specified order.
 
-See the [Parallel](https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Parallel.scala) demo.
+See the [Parallel](https://github.com/47deg/LambdaTest/blob/master/lambdatest/src/test/scala/demo/Parallel.scala) demo.
 
 
 
