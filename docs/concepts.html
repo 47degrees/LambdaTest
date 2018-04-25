@@ -12,7 +12,7 @@
 
 <p>Actions are created using functions that create objects of type <code class="highlighter-rouge">LambdaAct</code>. These functions are also informally refered to as actions.</p>
 
-<p>Multiple actions can also be specified as a list of actions. This is done via an implicit conversion from <code class="highlighter-rouge">Seq[LambdaAct]</code> to <code class="highlighter-rouge">LambdaAct</code>. See the <a href="https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Generate.scala">Generate</a> 
+<p>Multiple actions can also be specified as a list of actions. This is done via an implicit conversion from <code class="highlighter-rouge">Seq[LambdaAct]</code> to <code class="highlighter-rouge">LambdaAct</code>. See the <a href="https://github.com/47deg/LambdaTest/blob/master/lambdatest/src/test/scala/demo/Generate.scala">Generate</a>
 demo for an example that used this conversion.</p>
 
 <h3 id="options">Options</h3>
@@ -24,7 +24,7 @@ The <code class="highlighter-rouge">changeOptions</code>action is used to change
 
 <p>The testing system itself contains no mutable data. It does however have one kind of side effect: tests results are output. It would have been more pure to move the output entirely after the core functionality, but it is nice to see test output incrementally as tests are run so a little purity is sacrificed.</p>
 
-<p>Although LambdaTest is ideal for testing pure functional code, it can also be used to test code with mutable state and side effects. See the <a href="https://github.com/47deg/LambdaTest/blob/master/src/test/scala/demo/Mutable.scala">Mutable</a> demo.</p>
+<p>Although LambdaTest is ideal for testing pure functional code, it can also be used to test code with mutable state and side effects. See the <a href="https://github.com/47deg/LambdaTest/blob/master/lambdatest/src/test/scala/demo/Mutable.scala">Mutable</a> demo.</p>
 
 <h3 id="exceptions">Exceptions</h3>
 
