@@ -22,7 +22,7 @@ LambdaTest has the following features.
 
 * [Documentation](https://47deg.github.io/LambdaTest/)
 * [ScalaDoc](https://47deg.github.io/LambdaTest/api)
-* [Sample Code](https://github.com/47deg/LambdaTest/tree/master/src/test/scala/demo)
+* [Sample Code](https://github.com/47deg/LambdaTest/tree/master/lambdatest/src/test/scala/demo)
 
 ## Blog Posts
 
