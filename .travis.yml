@@ -3,7 +3,7 @@ scala:
   - 2.12.5
 
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 # Demo tests are designed to fail; so only test compile
 script: sbt lambda-test/test:compile
