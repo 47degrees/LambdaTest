@@ -8,7 +8,7 @@
 
 ### DEPRECATION NOTICE
 The LambdaTest was a small Scala library, written in a functional style, to write test suites for Scala code. It was developed between Nov 2016 and May 2018.
-47 Degrees has discontinued the development and maintenance of this library. The source code is left here for those interesting in studying it.
+47 Degrees has discontinued the development and maintenance of this library. The source code is left here for those interested in studying it.
 
 ## Introduction
 LambdaTest is a testing library for Scala code.
@@ -34,4 +34,3 @@ LambdaTest has the following features.
 * [Introducing LambdaTest](https://www.47deg.com/blog/introducing-lambdatest/)
 * [Programming LambdaTest](https://www.47deg.com/blog/programming-lambdatest/)
 * [Extending LambdaTest](https://www.47deg.com/blog/extending-lambda-test/)
-
